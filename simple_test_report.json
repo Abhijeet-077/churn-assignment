@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-06-29T23:09:10.772850",
+  "total_tests": 8,
+  "passed_tests": 7,
+  "success_rate": 87.5,
+  "total_time": 6.6218414306640625,
+  "results": {
+    "Data Loading": {
+      "passed": false,
+      "duration": 1.1342542171478271
+    },
+    "Preprocessing": {
+      "passed": true,
+      "duration": 2.0318875312805176
+    },
+    "Feature Engineering": {
+      "passed": true,
+      "duration": 2.2495059967041016
+    },
+    "Hyperparameter Optimization": {
+      "passed": true,
+      "duration": 0.0014903545379638672
+    },
+    "Interpretability": {
+      "passed": true,
+      "duration": 0.0042269229888916016
+    },
+    "API Components": {
+      "passed": true,
+      "duration": 0.11241483688354492
+    },
+    "Streamlit Components": {
+      "passed": true,
+      "duration": 0.5080783367156982
+    },
+    "Performance": {
+      "passed": true,
+      "duration": 0.5799832344055176
+    }
+  }
+}

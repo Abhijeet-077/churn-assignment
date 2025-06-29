@@ -1,0 +1,942 @@
+{
+  "basic_statistics": {
+    "shape": [
+      7043,
+      21
+    ],
+    "columns": [
+      "customerid",
+      "gender",
+      "seniorcitizen",
+      "partner",
+      "dependents",
+      "tenure",
+      "phoneservice",
+      "multiplelines",
+      "internetservice",
+      "onlinesecurity",
+      "onlinebackup",
+      "deviceprotection",
+      "techsupport",
+      "streamingtv",
+      "streamingmovies",
+      "contract",
+      "paperlessbilling",
+      "paymentmethod",
+      "monthlycharges",
+      "totalcharges",
+      "churn"
+    ],
+    "data_types": {
+      "customerid": "object",
+      "gender": "int64",
+      "seniorcitizen": "int64",
+      "partner": "int64",
+      "dependents": "int64",
+      "tenure": "int64",
+      "phoneservice": "int64",
+      "multiplelines": "object",
+      "internetservice": "object",
+      "onlinesecurity": "object",
+      "onlinebackup": "object",
+      "deviceprotection": "object",
+      "techsupport": "object",
+      "streamingtv": "object",
+      "streamingmovies": "object",
+      "contract": "object",
+      "paperlessbilling": "int64",
+      "paymentmethod": "object",
+      "monthlycharges": "float64",
+      "totalcharges": "float64",
+      "churn": "int64"
+    },
+    "missing_values": {
+      "customerid": 0,
+      "gender": 0,
+      "seniorcitizen": 0,
+      "partner": 0,
+      "dependents": 0,
+      "tenure": 0,
+      "phoneservice": 0,
+      "multiplelines": 0,
+      "internetservice": 0,
+      "onlinesecurity": 0,
+      "onlinebackup": 0,
+      "deviceprotection": 0,
+      "techsupport": 0,
+      "streamingtv": 0,
+      "streamingmovies": 0,
+      "contract": 0,
+      "paperlessbilling": 0,
+      "paymentmethod": 0,
+      "monthlycharges": 0,
+      "totalcharges": 11,
+      "churn": 0
+    },
+    "missing_percentage": {
+      "customerid": 0.0,
+      "gender": 0.0,
+      "seniorcitizen": 0.0,
+      "partner": 0.0,
+      "dependents": 0.0,
+      "tenure": 0.0,
+      "phoneservice": 0.0,
+      "multiplelines": 0.0,
+      "internetservice": 0.0,
+      "onlinesecurity": 0.0,
+      "onlinebackup": 0.0,
+      "deviceprotection": 0.0,
+      "techsupport": 0.0,
+      "streamingtv": 0.0,
+      "streamingmovies": 0.0,
+      "contract": 0.0,
+      "paperlessbilling": 0.0,
+      "paymentmethod": 0.0,
+      "monthlycharges": 0.0,
+      "totalcharges": 0.16,
+      "churn": 0.0
+    },
+    "duplicate_rows": 0,
+    "memory_usage_mb": 4.74,
+    "numerical_summary": {
+      "gender": {
+        "count": 7043.0,
+        "mean": 0.504756495811444,
+        "std": 0.5000128736471514,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 1.0,
+        "75%": 1.0,
+        "max": 1.0
+      },
+      "seniorcitizen": {
+        "count": 7043.0,
+        "mean": 0.1621468124378816,
+        "std": 0.3686116056100131,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 0.0,
+        "max": 1.0
+      },
+      "partner": {
+        "count": 7043.0,
+        "mean": 0.4830327985233565,
+        "std": 0.49974751071998735,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 1.0,
+        "max": 1.0
+      },
+      "dependents": {
+        "count": 7043.0,
+        "mean": 0.2995882436461735,
+        "std": 0.45811016751001526,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 1.0,
+        "max": 1.0
+      },
+      "tenure": {
+        "count": 7043.0,
+        "mean": 32.37114865824223,
+        "std": 24.55948102309446,
+        "min": 0.0,
+        "25%": 9.0,
+        "50%": 29.0,
+        "75%": 55.0,
+        "max": 72.0
+      },
+      "phoneservice": {
+        "count": 7043.0,
+        "mean": 0.9031662643759761,
+        "std": 0.29575223178363474,
+        "min": 0.0,
+        "25%": 1.0,
+        "50%": 1.0,
+        "75%": 1.0,
+        "max": 1.0
+      },
+      "paperlessbilling": {
+        "count": 7043.0,
+        "mean": 0.5922192247621753,
+        "std": 0.49145692404940683,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 1.0,
+        "75%": 1.0,
+        "max": 1.0
+      },
+      "monthlycharges": {
+        "count": 7043.0,
+        "mean": 64.76169246059918,
+        "std": 30.090047097678493,
+        "min": 18.25,
+        "25%": 35.5,
+        "50%": 70.35,
+        "75%": 89.85,
+        "max": 118.75
+      },
+      "totalcharges": {
+        "count": 7032.0,
+        "mean": 2283.3004408418656,
+        "std": 2266.771361883145,
+        "min": 18.8,
+        "25%": 401.45,
+        "50%": 1397.475,
+        "75%": 3794.7375,
+        "max": 8684.8
+      },
+      "churn": {
+        "count": 7043.0,
+        "mean": 0.2653698707936959,
+        "std": 0.441561305121947,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 1.0,
+        "max": 1.0
+      }
+    },
+    "categorical_summary": {
+      "customerid": {
+        "unique_count": 7043,
+        "most_frequent": "0002-ORFBO",
+        "value_counts": {
+          "3186-AJIEK": 1,
+          "7590-VHVEG": 1,
+          "5575-GNVDE": 1,
+          "4501-VCPFK": 1,
+          "6075-SLNIL": 1,
+          "9347-AERRL": 1,
+          "0093-XWZFY": 1,
+          "2274-XUATA": 1,
+          "1980-KXVPM": 1,
+          "7703-ZEKEF": 1
+        }
+      },
+      "multiplelines": {
+        "unique_count": 3,
+        "most_frequent": "No",
+        "value_counts": {
+          "No": 3390,
+          "Yes": 2971,
+          "No phone service": 682
+        }
+      },
+      "internetservice": {
+        "unique_count": 3,
+        "most_frequent": "Fiber optic",
+        "value_counts": {
+          "Fiber optic": 3096,
+          "DSL": 2421,
+          "No": 1526
+        }
+      },
+      "onlinesecurity": {
+        "unique_count": 3,
+        "most_frequent": "No",
+        "value_counts": {
+          "No": 3498,
+          "Yes": 2019,
+          "No internet service": 1526
+        }
+      },
+      "onlinebackup": {
+        "unique_count": 3,
+        "most_frequent": "No",
+        "value_counts": {
+          "No": 3088,
+          "Yes": 2429,
+          "No internet service": 1526
+        }
+      },
+      "deviceprotection": {
+        "unique_count": 3,
+        "most_frequent": "No",
+        "value_counts": {
+          "No": 3095,
+          "Yes": 2422,
+          "No internet service": 1526
+        }
+      },
+      "techsupport": {
+        "unique_count": 3,
+        "most_frequent": "No",
+        "value_counts": {
+          "No": 3473,
+          "Yes": 2044,
+          "No internet service": 1526
+        }
+      },
+      "streamingtv": {
+        "unique_count": 3,
+        "most_frequent": "No",
+        "value_counts": {
+          "No": 2810,
+          "Yes": 2707,
+          "No internet service": 1526
+        }
+      },
+      "streamingmovies": {
+        "unique_count": 3,
+        "most_frequent": "No",
+        "value_counts": {
+          "No": 2785,
+          "Yes": 2732,
+          "No internet service": 1526
+        }
+      },
+      "contract": {
+        "unique_count": 3,
+        "most_frequent": "Month-to-month",
+        "value_counts": {
+          "Month-to-month": 3875,
+          "Two year": 1695,
+          "One year": 1473
+        }
+      },
+      "paymentmethod": {
+        "unique_count": 4,
+        "most_frequent": "Electronic check",
+        "value_counts": {
+          "Electronic check": 2365,
+          "Mailed check": 1612,
+          "Bank transfer (automatic)": 1544,
+          "Credit card (automatic)": 1522
+        }
+      }
+    }
+  },
+  "target_analysis": {
+    "value_counts": {
+      "0": 5174,
+      "1": 1869
+    },
+    "value_percentages": {
+      "0": 73.46,
+      "1": 26.54
+    },
+    "missing_values": 0,
+    "unique_values": 2,
+    "imbalance_ratio": 2.77,
+    "minority_class_percentage": 26.54,
+    "plot_path": "C:\\Users\\Abhij\\Downloads\\churn assignment\\reports\\eda\\churn_distribution.png"
+  },
+  "correlation_analysis": {
+    "correlation_matrix": {
+      "gender": {
+        "gender": 1.0,
+        "seniorcitizen": -0.0018737116382607595,
+        "partner": -0.0018080796617890192,
+        "dependents": 0.010516611922734075,
+        "tenure": 0.00510622261994984,
+        "phoneservice": -0.006487672136208101,
+        "paperlessbilling": -0.01175369122122214,
+        "monthlycharges": -0.014569323728667193,
+        "totalcharges": 4.783950839781735e-05,
+        "churn": -0.00861209507899784
+      },
+      "seniorcitizen": {
+        "gender": -0.0018737116382607595,
+        "seniorcitizen": 1.0,
+        "partner": 0.01647865759741389,
+        "dependents": -0.2111850884939573,
+        "tenure": 0.016566877681809315,
+        "phoneservice": 0.008576401079279374,
+        "paperlessbilling": 0.15652955931117266,
+        "monthlycharges": 0.22017333857627205,
+        "totalcharges": 0.10241060539533069,
+        "churn": 0.15088932817647233
+      },
+      "partner": {
+        "gender": -0.0018080796617890192,
+        "seniorcitizen": 0.01647865759741389,
+        "partner": 1.0,
+        "dependents": 0.4526762829294659,
+        "tenure": 0.37969746116829306,
+        "phoneservice": 0.017705663223971994,
+        "paperlessbilling": -0.014876622287891071,
+        "monthlycharges": 0.0968479362564748,
+        "totalcharges": 0.3190723632385698,
+        "churn": -0.15044754495917623
+      },
+      "dependents": {
+        "gender": 0.010516611922734075,
+        "seniorcitizen": -0.2111850884939573,
+        "partner": 0.4526762829294659,
+        "dependents": 1.0,
+        "tenure": 0.15971233121691789,
+        "phoneservice": -0.0017616785446837207,
+        "paperlessbilling": -0.11137722919364468,
+        "monthlycharges": -0.11389023002193566,
+        "totalcharges": 0.06465324942177274,
+        "churn": -0.1642214015797254
+      },
+      "tenure": {
+        "gender": 0.00510622261994984,
+        "seniorcitizen": 0.016566877681809315,
+        "partner": 0.37969746116829306,
+        "dependents": 0.15971233121691789,
+        "tenure": 1.0,
+        "phoneservice": 0.008448206732743782,
+        "paperlessbilling": 0.0061524815982710816,
+        "monthlycharges": 0.24789985628615094,
+        "totalcharges": 0.8258804609332019,
+        "churn": -0.35222867011307885
+      },
+      "phoneservice": {
+        "gender": -0.006487672136208101,
+        "seniorcitizen": 0.008576401079279374,
+        "partner": 0.017705663223971994,
+        "dependents": -0.0017616785446837207,
+        "tenure": 0.008448206732743782,
+        "phoneservice": 1.0,
+        "paperlessbilling": 0.016504805732569586,
+        "monthlycharges": 0.24739796321413557,
+        "totalcharges": 0.1130082609547378,
+        "churn": 0.011941980029003084
+      },
+      "paperlessbilling": {
+        "gender": -0.01175369122122214,
+        "seniorcitizen": 0.15652955931117266,
+        "partner": -0.014876622287891071,
+        "dependents": -0.11137722919364468,
+        "tenure": 0.0061524815982710816,
+        "phoneservice": 0.016504805732569586,
+        "paperlessbilling": 1.0,
+        "monthlycharges": 0.35214996779598723,
+        "totalcharges": 0.15782978286590804,
+        "churn": 0.19182533166646878
+      },
+      "monthlycharges": {
+        "gender": -0.014569323728667193,
+        "seniorcitizen": 0.22017333857627205,
+        "partner": 0.0968479362564748,
+        "dependents": -0.11389023002193566,
+        "tenure": 0.24789985628615094,
+        "phoneservice": 0.24739796321413557,
+        "paperlessbilling": 0.35214996779598723,
+        "monthlycharges": 1.0,
+        "totalcharges": 0.6510648032262017,
+        "churn": 0.19335642223784716
+      },
+      "totalcharges": {
+        "gender": 4.783950839781735e-05,
+        "seniorcitizen": 0.10241060539533069,
+        "partner": 0.3190723632385698,
+        "dependents": 0.06465324942177274,
+        "tenure": 0.8258804609332019,
+        "phoneservice": 0.1130082609547378,
+        "paperlessbilling": 0.15782978286590804,
+        "monthlycharges": 0.6510648032262017,
+        "totalcharges": 1.0,
+        "churn": -0.199484083567564
+      },
+      "churn": {
+        "gender": -0.00861209507899784,
+        "seniorcitizen": 0.15088932817647233,
+        "partner": -0.15044754495917623,
+        "dependents": -0.1642214015797254,
+        "tenure": -0.35222867011307885,
+        "phoneservice": 0.011941980029003084,
+        "paperlessbilling": 0.19182533166646878,
+        "monthlycharges": 0.19335642223784716,
+        "totalcharges": -0.199484083567564,
+        "churn": 1.0
+      }
+    },
+    "high_correlation_pairs": [
+      {
+        "feature1": "tenure",
+        "feature2": "totalcharges",
+        "correlation": 0.826
+      }
+    ],
+    "heatmap_path": "C:\\Users\\Abhij\\Downloads\\churn assignment\\reports\\eda\\correlation_heatmap.png"
+  },
+  "feature_target_analysis": {
+    "numerical_features": {
+      "gender": {
+        "mean": {
+          "0": 0.5073444143795902,
+          "1": 0.49759229534510435
+        },
+        "median": {
+          "0": 1.0,
+          "1": 0.0
+        },
+        "std": {
+          "0": 0.49999437697467913,
+          "1": 0.5001280164431886
+        }
+      },
+      "seniorcitizen": {
+        "mean": {
+          "0": 0.12872052570545034,
+          "1": 0.2546816479400749
+        },
+        "median": {
+          "0": 0.0,
+          "1": 0.0
+        },
+        "std": {
+          "0": 0.33492272563063946,
+          "1": 0.4357987175972202
+        }
+      },
+      "partner": {
+        "mean": {
+          "0": 0.5282180131426363,
+          "1": 0.3579454253611557
+        },
+        "median": {
+          "0": 1.0,
+          "1": 0.0
+        },
+        "std": {
+          "0": 0.4992513571989809,
+          "1": 0.4795242726591275
+        }
+      },
+      "dependents": {
+        "mean": {
+          "0": 0.3448009277155006,
+          "1": 0.17442482611021937
+        },
+        "median": {
+          "0": 0.0,
+          "1": 0.0
+        },
+        "std": {
+          "0": 0.4753492606219705,
+          "1": 0.3795759401919828
+        }
+      },
+      "tenure": {
+        "mean": {
+          "0": 37.56996521066873,
+          "1": 17.979133226324237
+        },
+        "median": {
+          "0": 38.0,
+          "1": 10.0
+        },
+        "std": {
+          "0": 24.11377669070408,
+          "1": 19.53112305451955
+        }
+      },
+      "phoneservice": {
+        "mean": {
+          "0": 0.9010436799381523,
+          "1": 0.9090422685928304
+        },
+        "median": {
+          "0": 1.0,
+          "1": 1.0
+        },
+        "std": {
+          "0": 0.29863222062449296,
+          "1": 0.2876259482625107
+        }
+      },
+      "paperlessbilling": {
+        "mean": {
+          "0": 0.5355624275222265,
+          "1": 0.7490636704119851
+        },
+        "median": {
+          "0": 1.0,
+          "1": 1.0
+        },
+        "std": {
+          "0": 0.49878191339161615,
+          "1": 0.43366797549215313
+        }
+      },
+      "monthlycharges": {
+        "mean": {
+          "0": 61.26512369540008,
+          "1": 74.44133226324237
+        },
+        "median": {
+          "0": 64.42500000000001,
+          "1": 79.65
+        },
+        "std": {
+          "0": 31.092648119345313,
+          "1": 24.666053259397422
+        }
+      },
+      "totalcharges": {
+        "mean": {
+          "0": 2555.344141003293,
+          "1": 1531.7960941680042
+        },
+        "median": {
+          "0": 1683.6,
+          "1": 703.55
+        },
+        "std": {
+          "0": 2329.456983560435,
+          "1": 1890.8229944644042
+        }
+      }
+    },
+    "numerical_plot_path": "C:\\Users\\Abhij\\Downloads\\churn assignment\\reports\\eda\\numerical_features_vs_target.png",
+    "categorical_features": {
+      "multiplelines": {
+        "crosstab_percentage": {
+          "0": {
+            "No": 74.95575221238938,
+            "No phone service": 75.0733137829912,
+            "Yes": 71.3901043419724
+          },
+          "1": {
+            "No": 25.04424778761062,
+            "No phone service": 24.926686217008797,
+            "Yes": 28.6098956580276
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'No')": 2541,
+          "(0, 'Yes')": 2121,
+          "(0, 'No phone service')": 512,
+          "(1, 'Yes')": 850,
+          "(1, 'No')": 849,
+          "(1, 'No phone service')": 170
+        }
+      },
+      "internetservice": {
+        "crosstab_percentage": {
+          "0": {
+            "DSL": 81.04089219330855,
+            "Fiber optic": 58.10723514211886,
+            "No": 92.59501965923984
+          },
+          "1": {
+            "DSL": 18.95910780669145,
+            "Fiber optic": 41.89276485788114,
+            "No": 7.404980340760157
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'DSL')": 1962,
+          "(0, 'Fiber optic')": 1799,
+          "(0, 'No')": 1413,
+          "(1, 'Fiber optic')": 1297,
+          "(1, 'DSL')": 459,
+          "(1, 'No')": 113
+        }
+      },
+      "onlinesecurity": {
+        "crosstab_percentage": {
+          "0": {
+            "No": 58.23327615780446,
+            "No internet service": 92.59501965923984,
+            "Yes": 85.38880633977216
+          },
+          "1": {
+            "No": 41.76672384219554,
+            "No internet service": 7.404980340760157,
+            "Yes": 14.611193660227837
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'No')": 2037,
+          "(0, 'Yes')": 1724,
+          "(0, 'No internet service')": 1413,
+          "(1, 'No')": 1461,
+          "(1, 'Yes')": 295,
+          "(1, 'No internet service')": 113
+        }
+      },
+      "onlinebackup": {
+        "crosstab_percentage": {
+          "0": {
+            "No": 60.07124352331606,
+            "No internet service": 92.59501965923984,
+            "Yes": 78.46850555784273
+          },
+          "1": {
+            "No": 39.92875647668394,
+            "No internet service": 7.404980340760157,
+            "Yes": 21.531494442157268
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'Yes')": 1906,
+          "(0, 'No')": 1855,
+          "(0, 'No internet service')": 1413,
+          "(1, 'No')": 1233,
+          "(1, 'Yes')": 523,
+          "(1, 'No internet service')": 113
+        }
+      },
+      "deviceprotection": {
+        "crosstab_percentage": {
+          "0": {
+            "No": 60.872374798061394,
+            "No internet service": 92.59501965923984,
+            "Yes": 77.49793559042114
+          },
+          "1": {
+            "No": 39.127625201938606,
+            "No internet service": 7.404980340760157,
+            "Yes": 22.50206440957886
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'No')": 1884,
+          "(0, 'Yes')": 1877,
+          "(0, 'No internet service')": 1413,
+          "(1, 'No')": 1211,
+          "(1, 'Yes')": 545,
+          "(1, 'No internet service')": 113
+        }
+      },
+      "techsupport": {
+        "crosstab_percentage": {
+          "0": {
+            "No": 58.36452634609848,
+            "No internet service": 92.59501965923984,
+            "Yes": 84.83365949119374
+          },
+          "1": {
+            "No": 41.63547365390153,
+            "No internet service": 7.404980340760157,
+            "Yes": 15.166340508806261
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'No')": 2027,
+          "(0, 'Yes')": 1734,
+          "(0, 'No internet service')": 1413,
+          "(1, 'No')": 1446,
+          "(1, 'Yes')": 310,
+          "(1, 'No internet service')": 113
+        }
+      },
+      "streamingtv": {
+        "crosstab_percentage": {
+          "0": {
+            "No": 66.47686832740214,
+            "No internet service": 92.59501965923984,
+            "Yes": 69.9298115995567
+          },
+          "1": {
+            "No": 33.52313167259787,
+            "No internet service": 7.404980340760157,
+            "Yes": 30.070188400443293
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'Yes')": 1893,
+          "(0, 'No')": 1868,
+          "(0, 'No internet service')": 1413,
+          "(1, 'No')": 942,
+          "(1, 'Yes')": 814,
+          "(1, 'No internet service')": 113
+        }
+      },
+      "streamingmovies": {
+        "crosstab_percentage": {
+          "0": {
+            "No": 66.31956912028726,
+            "No internet service": 92.59501965923984,
+            "Yes": 70.05856515373353
+          },
+          "1": {
+            "No": 33.680430879712745,
+            "No internet service": 7.404980340760157,
+            "Yes": 29.941434846266475
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'Yes')": 1914,
+          "(0, 'No')": 1847,
+          "(0, 'No internet service')": 1413,
+          "(1, 'No')": 938,
+          "(1, 'Yes')": 818,
+          "(1, 'No internet service')": 113
+        }
+      },
+      "contract": {
+        "crosstab_percentage": {
+          "0": {
+            "Month-to-month": 57.29032258064516,
+            "One year": 88.73048200950441,
+            "Two year": 97.16814159292035
+          },
+          "1": {
+            "Month-to-month": 42.70967741935484,
+            "One year": 11.269517990495586,
+            "Two year": 2.831858407079646
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'Month-to-month')": 2220,
+          "(0, 'Two year')": 1647,
+          "(0, 'One year')": 1307,
+          "(1, 'Month-to-month')": 1655,
+          "(1, 'One year')": 166,
+          "(1, 'Two year')": 48
+        }
+      },
+      "paymentmethod": {
+        "crosstab_percentage": {
+          "0": {
+            "Bank transfer (automatic)": 83.29015544041451,
+            "Credit card (automatic)": 84.7568988173456,
+            "Electronic check": 54.71458773784356,
+            "Mailed check": 80.89330024813896
+          },
+          "1": {
+            "Bank transfer (automatic)": 16.709844559585495,
+            "Credit card (automatic)": 15.243101182654403,
+            "Electronic check": 45.28541226215645,
+            "Mailed check": 19.106699751861044
+          }
+        },
+        "value_counts_by_target": {
+          "(0, 'Mailed check')": 1304,
+          "(0, 'Electronic check')": 1294,
+          "(0, 'Credit card (automatic)')": 1290,
+          "(0, 'Bank transfer (automatic)')": 1286,
+          "(1, 'Electronic check')": 1071,
+          "(1, 'Mailed check')": 308,
+          "(1, 'Bank transfer (automatic)')": 258,
+          "(1, 'Credit card (automatic)')": 232
+        }
+      }
+    }
+  },
+  "outlier_analysis": {
+    "gender": {
+      "iqr_outliers_count": 0,
+      "iqr_outliers_percentage": 0.0,
+      "zscore_outliers_count": 0,
+      "zscore_outliers_percentage": 0.0,
+      "bounds": {
+        "iqr_lower": -1.5,
+        "iqr_upper": 2.5,
+        "mean": 0.504756495811444,
+        "std": 0.5000128736471514
+      }
+    },
+    "seniorcitizen": {
+      "iqr_outliers_count": 1142,
+      "iqr_outliers_percentage": 16.21,
+      "zscore_outliers_count": 0,
+      "zscore_outliers_percentage": 0.0,
+      "bounds": {
+        "iqr_lower": 0.0,
+        "iqr_upper": 0.0,
+        "mean": 0.1621468124378816,
+        "std": 0.3686116056100131
+      }
+    },
+    "partner": {
+      "iqr_outliers_count": 0,
+      "iqr_outliers_percentage": 0.0,
+      "zscore_outliers_count": 0,
+      "zscore_outliers_percentage": 0.0,
+      "bounds": {
+        "iqr_lower": -1.5,
+        "iqr_upper": 2.5,
+        "mean": 0.4830327985233565,
+        "std": 0.49974751071998735
+      }
+    },
+    "dependents": {
+      "iqr_outliers_count": 0,
+      "iqr_outliers_percentage": 0.0,
+      "zscore_outliers_count": 0,
+      "zscore_outliers_percentage": 0.0,
+      "bounds": {
+        "iqr_lower": -1.5,
+        "iqr_upper": 2.5,
+        "mean": 0.2995882436461735,
+        "std": 0.45811016751001526
+      }
+    },
+    "tenure": {
+      "iqr_outliers_count": 0,
+      "iqr_outliers_percentage": 0.0,
+      "zscore_outliers_count": 0,
+      "zscore_outliers_percentage": 0.0,
+      "bounds": {
+        "iqr_lower": -60.0,
+        "iqr_upper": 124.0,
+        "mean": 32.37114865824223,
+        "std": 24.55948102309446
+      }
+    },
+    "phoneservice": {
+      "iqr_outliers_count": 682,
+      "iqr_outliers_percentage": 9.68,
+      "zscore_outliers_count": 682,
+      "zscore_outliers_percentage": 9.68,
+      "bounds": {
+        "iqr_lower": 1.0,
+        "iqr_upper": 1.0,
+        "mean": 0.9031662643759761,
+        "std": 0.29575223178363474
+      }
+    },
+    "paperlessbilling": {
+      "iqr_outliers_count": 0,
+      "iqr_outliers_percentage": 0.0,
+      "zscore_outliers_count": 0,
+      "zscore_outliers_percentage": 0.0,
+      "bounds": {
+        "iqr_lower": -1.5,
+        "iqr_upper": 2.5,
+        "mean": 0.5922192247621753,
+        "std": 0.49145692404940683
+      }
+    },
+    "monthlycharges": {
+      "iqr_outliers_count": 0,
+      "iqr_outliers_percentage": 0.0,
+      "zscore_outliers_count": 0,
+      "zscore_outliers_percentage": 0.0,
+      "bounds": {
+        "iqr_lower": -46.02499999999999,
+        "iqr_upper": 171.375,
+        "mean": 64.76169246059918,
+        "std": 30.090047097678493
+      }
+    },
+    "totalcharges": {
+      "iqr_outliers_count": 0,
+      "iqr_outliers_percentage": 0.0,
+      "zscore_outliers_count": 0,
+      "zscore_outliers_percentage": 0.0,
+      "bounds": {
+        "iqr_lower": -4688.481250000001,
+        "iqr_upper": 8884.66875,
+        "mean": 2283.300440841866,
+        "std": 2266.771361883145
+      }
+    },
+    "churn": {
+      "iqr_outliers_count": 0,
+      "iqr_outliers_percentage": 0.0,
+      "zscore_outliers_count": 0,
+      "zscore_outliers_percentage": 0.0,
+      "bounds": {
+        "iqr_lower": -1.5,
+        "iqr_upper": 2.5,
+        "mean": 0.2653698707936959,
+        "std": 0.441561305121947
+      }
+    },
+    "plot_path": "C:\\Users\\Abhij\\Downloads\\churn assignment\\reports\\eda\\outlier_analysis.png"
+  },
+  "automated_report_path": null,
+  "sweetviz_report_path": null
+}

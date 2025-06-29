@@ -1,0 +1,175 @@
+# Main Configuration File for Churn Prediction Project
+
+# Data Configuration
+data:
+  raw_data_path: "data/raw/"
+  processed_data_path: "data/processed/"
+  external_data_path: "data/external/"
+  dataset_url: "https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv"
+  target_column: "churn"
+  test_size: 0.2
+  validation_size: 0.2
+  random_state: 42
+
+# Feature Engineering
+features:
+  numerical_features:
+    - "tenure"
+    - "monthlycharges"
+    - "totalcharges"
+  categorical_features:
+    - "gender"
+    - "seniorcitizen"
+    - "partner"
+    - "dependents"
+    - "phoneservice"
+    - "multiplelines"
+    - "internetservice"
+    - "onlinesecurity"
+    - "onlinebackup"
+    - "deviceprotection"
+    - "techsupport"
+    - "streamingtv"
+    - "streamingmovies"
+    - "contract"
+    - "paperlessbilling"
+    - "paymentmethod"
+  
+  # Feature Engineering Parameters
+  polynomial_degree: 2
+  interaction_features: true
+  binning_features:
+    - "tenure"
+    - "monthlycharges"
+    - "totalcharges"
+  n_bins: 5
+
+# Preprocessing
+preprocessing:
+  # Missing Value Imputation
+  imputation:
+    numerical_strategy: "median"  # mean, median, knn, iterative
+    categorical_strategy: "mode"  # mode, constant
+    knn_neighbors: 5
+    
+  # Outlier Detection
+  outlier_detection:
+    methods: ["iqr", "zscore", "isolation_forest"]
+    iqr_threshold: 1.5
+    zscore_threshold: 3
+    isolation_contamination: 0.1
+    
+  # Encoding
+  encoding:
+    ordinal_features: []
+    target_encoding_features: ["contract", "paymentmethod", "internetservice"]
+    binary_encoding_features: []
+    frequency_encoding_features: ["multiplelines"]
+    
+  # Scaling
+  scaling:
+    method: "standard"  # standard, robust, minmax
+    
+  # Class Imbalance
+  resampling:
+    method: "none"  # smote, adasyn, random_oversample, random_undersample, none
+    sampling_strategy: "auto"
+
+# Model Configuration
+models:
+  logistic_regression:
+    enabled: true
+    params:
+      C: [0.001, 0.01, 0.1, 1, 10, 100]
+      penalty: ["l1", "l2", "elasticnet"]
+      solver: ["liblinear", "saga"]
+      max_iter: 1000
+      
+  xgboost:
+    enabled: true
+    params:
+      n_estimators: [100, 200, 300, 500]
+      max_depth: [3, 4, 5, 6, 7]
+      learning_rate: [0.01, 0.05, 0.1, 0.2]
+      subsample: [0.8, 0.9, 1.0]
+      colsample_bytree: [0.8, 0.9, 1.0]
+      reg_alpha: [0, 0.1, 0.5, 1]
+      reg_lambda: [0, 0.1, 0.5, 1]
+      
+  random_forest:
+    enabled: true
+    params:
+      n_estimators: [100, 200, 300]
+      max_depth: [10, 20, 30, null]
+      min_samples_split: [2, 5, 10]
+      min_samples_leaf: [1, 2, 4]
+      max_features: ["sqrt", "log2", null]
+      
+  lightgbm:
+    enabled: true
+    params:
+      n_estimators: [100, 200, 300]
+      max_depth: [3, 5, 7, -1]
+      learning_rate: [0.01, 0.05, 0.1]
+      num_leaves: [31, 50, 100]
+      subsample: [0.8, 0.9, 1.0]
+      colsample_bytree: [0.8, 0.9, 1.0]
+
+# Hyperparameter Optimization
+optimization:
+  method: "optuna"  # optuna, hyperopt, grid_search, random_search
+  n_trials: 100
+  cv_folds: 5
+  scoring: "roc_auc"
+  early_stopping_rounds: 10
+  timeout: 3600  # seconds
+
+# Model Evaluation
+evaluation:
+  cv_folds: 5
+  stratified: true
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1"
+    - "roc_auc"
+    - "pr_auc"
+  threshold_optimization: true
+  
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  model_version: "v1"
+  max_request_size: 1000000  # bytes
+  
+# Dashboard Configuration
+dashboard:
+  host: "0.0.0.0"
+  port: 8501
+  theme: "dark"
+  
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_path: "logs/churn_prediction.log"
+  max_file_size: 10485760  # 10MB
+  backup_count: 5
+
+# MLOps Configuration
+mlops:
+  model_registry: "local"  # local, mlflow
+  experiment_tracking: true
+  data_drift_detection: true
+  model_monitoring: true
+  auto_retrain_threshold: 0.05  # performance degradation threshold
+  
+# Paths
+paths:
+  models: "models/"
+  artifacts: "artifacts/"
+  reports: "reports/"
+  plots: "plots/"
