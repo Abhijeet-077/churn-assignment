@@ -1,0 +1,112 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Documentation
+docs/_build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Environments
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Deployment
+deploy/
+k8s/
+helm/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Large files
+*.pkl
+*.joblib
+models/
+artifacts/optimization/
+artifacts/interpretability_results.joblib
+
+# Development files
+test_*.py
+debug_*.py
+demo_*.py
+*_test.py
+*_demo.py

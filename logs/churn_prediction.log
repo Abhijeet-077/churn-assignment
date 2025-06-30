@@ -1476,3 +1476,167 @@ Feature names seen at fit time, yet now missing:
 - onlinesecurity_yes
 - ...
 
+2025-06-30 11:32:23,989 - src.data.data_loader - [32mINFO[0m - Dataset already exists at C:\Users\Abhij\Downloads\churn assignment\data\raw\telco_customer_churn.csv
+2025-06-30 11:32:23,991 - src.data.data_loader - [32mINFO[0m - Loading data from C:\Users\Abhij\Downloads\churn assignment\data\raw\telco_customer_churn.csv
+2025-06-30 11:32:24,105 - src.data.data_loader - [32mINFO[0m - Data loaded successfully. Shape: (7043, 21)
+2025-06-30 11:32:24,106 - src.data.data_loader - [32mINFO[0m - Starting initial data cleaning
+2025-06-30 11:32:24,441 - src.data.data_loader - [32mINFO[0m - Initial cleaning completed. Shape: (7043, 21)
+2025-06-30 11:32:24,442 - src.data.data_loader - [32mINFO[0m - Validating data quality
+2025-06-30 11:32:24,682 - src.utils.validators - [32mINFO[0m - DataFrame validation passed. Shape: (7043, 21)
+2025-06-30 11:32:24,693 - src.utils.validators - [32mINFO[0m - Target column validation completed. Unique values: 2
+2025-06-30 11:32:24,738 - src.utils.validators - [32mINFO[0m - Feature validation completed. Numerical: 3, Categorical: 16
+2025-06-30 11:32:24,740 - src.data.data_loader - [32mINFO[0m - Data validation passed successfully
+2025-06-30 11:32:25,060 - src.data.data_loader - [32mINFO[0m - Dataset info: (7043, 21) shape, {'customerid': 0, 'gender': 0, 'seniorcitizen': 0, 'partner': 0, 'dependents': 0, 'tenure': 0, 'phoneservice': 0, 'multiplelines': 0, 'internetservice': 0, 'onlinesecurity': 0, 'onlinebackup': 0, 'deviceprotection': 0, 'techsupport': 0, 'streamingtv': 0, 'streamingmovies': 0, 'contract': 0, 'paperlessbilling': 0, 'paymentmethod': 0, 'monthlycharges': 0, 'totalcharges': 11, 'churn': 0} missing values
+2025-06-30 11:32:25,269 - src.data.data_loader - [32mINFO[0m - Processed data saved to C:\Users\Abhij\Downloads\churn assignment\data\processed\processed_data.csv
+2025-06-30 11:32:25,328 - src.api.prediction_service - [32mINFO[0m - Loading trained models...
+2025-06-30 11:32:41,875 - src.api.prediction_service - [32mINFO[0m - Created model logistic_regression with optimized parameters
+2025-06-30 11:32:41,876 - src.api.prediction_service - [32mINFO[0m - Loaded model: logistic_regression
+2025-06-30 11:32:41,876 - src.api.prediction_service - [32mINFO[0m - Created model random_forest with optimized parameters
+2025-06-30 11:32:41,876 - src.api.prediction_service - [32mINFO[0m - Loaded model: random_forest
+2025-06-30 11:32:41,877 - src.api.prediction_service - [32mINFO[0m - Created model gradient_boosting with optimized parameters
+2025-06-30 11:32:41,877 - src.api.prediction_service - [32mINFO[0m - Loaded model: gradient_boosting
+2025-06-30 11:32:41,877 - src.api.prediction_service - [32mINFO[0m - Best model set to: gradient_boosting
+2025-06-30 11:32:41,877 - src.api.prediction_service - [32mINFO[0m - Loading preprocessors...
+2025-06-30 11:32:41,878 - src.api.prediction_service - [32mINFO[0m - Training models with data...
+2025-06-30 11:32:43,819 - src.data.data_loader - [32mINFO[0m - Dataset already exists at C:\Users\Abhij\Downloads\churn assignment\data\raw\telco_customer_churn.csv
+2025-06-30 11:32:43,820 - src.data.data_loader - [32mINFO[0m - Loading data from C:\Users\Abhij\Downloads\churn assignment\data\raw\telco_customer_churn.csv
+2025-06-30 11:32:43,903 - src.data.data_loader - [32mINFO[0m - Data loaded successfully. Shape: (7043, 21)
+2025-06-30 11:32:43,903 - src.data.data_loader - [32mINFO[0m - Starting initial data cleaning
+2025-06-30 11:32:44,080 - src.data.data_loader - [32mINFO[0m - Initial cleaning completed. Shape: (7043, 21)
+2025-06-30 11:32:44,081 - src.data.data_loader - [32mINFO[0m - Validating data quality
+2025-06-30 11:32:44,127 - src.utils.validators - [32mINFO[0m - DataFrame validation passed. Shape: (7043, 21)
+2025-06-30 11:32:44,132 - src.utils.validators - [32mINFO[0m - Target column validation completed. Unique values: 2
+2025-06-30 11:32:44,158 - src.utils.validators - [32mINFO[0m - Feature validation completed. Numerical: 3, Categorical: 16
+2025-06-30 11:32:44,159 - src.data.data_loader - [32mINFO[0m - Data validation passed successfully
+2025-06-30 11:32:44,346 - src.data.data_loader - [32mINFO[0m - Dataset info: (7043, 21) shape, {'customerid': 0, 'gender': 0, 'seniorcitizen': 0, 'partner': 0, 'dependents': 0, 'tenure': 0, 'phoneservice': 0, 'multiplelines': 0, 'internetservice': 0, 'onlinesecurity': 0, 'onlinebackup': 0, 'deviceprotection': 0, 'techsupport': 0, 'streamingtv': 0, 'streamingmovies': 0, 'contract': 0, 'paperlessbilling': 0, 'paymentmethod': 0, 'monthlycharges': 0, 'totalcharges': 11, 'churn': 0} missing values
+2025-06-30 11:32:44,503 - src.data.data_loader - [32mINFO[0m - Processed data saved to C:\Users\Abhij\Downloads\churn assignment\data\processed\processed_data.csv
+2025-06-30 11:32:44,507 - src.data.preprocessing - [32mINFO[0m - Starting complete preprocessing pipeline
+2025-06-30 11:32:44,556 - src.utils.validators - [32mINFO[0m - DataFrame validation passed. Shape: (7043, 21)
+2025-06-30 11:32:44,561 - src.data.preprocessing - [32mINFO[0m - Handling missing values using median strategy
+2025-06-30 11:32:44,653 - src.data.preprocessing - [32mINFO[0m - Missing value imputation completed. Remaining missing values: 0
+2025-06-30 11:32:44,654 - src.data.preprocessing - [32mINFO[0m - Detecting outliers using iqr method
+2025-06-30 11:32:44,712 - src.data.preprocessing - [32mINFO[0m - Outliers detected (iqr): {'gender_outlier_iqr': 0, 'seniorcitizen_outlier_iqr': 1142, 'partner_outlier_iqr': 0, 'dependents_outlier_iqr': 0, 'tenure_outlier_iqr': 0, 'phoneservice_outlier_iqr': 682, 'paperlessbilling_outlier_iqr': 0, 'monthlycharges_outlier_iqr': 0, 'totalcharges_outlier_iqr': 0}
+2025-06-30 11:32:44,712 - src.data.preprocessing - [32mINFO[0m - Detecting outliers using zscore method
+2025-06-30 11:32:44,747 - src.data.preprocessing - [32mINFO[0m - Outliers detected (zscore): {'gender_outlier_zscore': 0, 'seniorcitizen_outlier_zscore': 0, 'partner_outlier_zscore': 0, 'dependents_outlier_zscore': 0, 'tenure_outlier_zscore': 0, 'phoneservice_outlier_zscore': 682, 'paperlessbilling_outlier_zscore': 0, 'monthlycharges_outlier_zscore': 0, 'totalcharges_outlier_zscore': 0}
+2025-06-30 11:32:44,747 - src.data.preprocessing - [32mINFO[0m - Detecting outliers using isolation_forest method
+2025-06-30 11:32:45,525 - src.data.preprocessing - [32mINFO[0m - Outliers detected (isolation_forest): {'outlier_isolation_forest': 705}
+2025-06-30 11:32:45,526 - src.data.preprocessing - [32mINFO[0m - Encoding categorical features
+2025-06-30 11:32:45,627 - src.data.preprocessing - [33mWARNING[0m - Category encoders not available. Skipping target encoding.
+2025-06-30 11:32:45,635 - src.data.preprocessing - [32mINFO[0m - Applying one-hot encoding to columns: ['onlinesecurity', 'onlinebackup', 'deviceprotection', 'techsupport', 'streamingtv', 'streamingmovies']
+2025-06-30 11:32:45,686 - src.data.preprocessing - [33mWARNING[0m - Column multiplelines is still object type, converting to category codes
+2025-06-30 11:32:45,688 - src.data.preprocessing - [33mWARNING[0m - Column internetservice is still object type, converting to category codes
+2025-06-30 11:32:45,691 - src.data.preprocessing - [33mWARNING[0m - Column contract is still object type, converting to category codes
+2025-06-30 11:32:45,694 - src.data.preprocessing - [33mWARNING[0m - Column paymentmethod is still object type, converting to category codes
+2025-06-30 11:32:45,702 - src.data.preprocessing - [32mINFO[0m - Categorical encoding completed. New shape: (7043, 26)
+2025-06-30 11:32:45,703 - src.data.preprocessing - [32mINFO[0m - Scaling features using standard method
+2025-06-30 11:32:45,726 - src.data.preprocessing - [32mINFO[0m - Feature scaling completed using standard method
+2025-06-30 11:32:45,727 - src.data.preprocessing - [32mINFO[0m - Preprocessing pipeline completed. Final shape: (7043, 26)
+2025-06-30 11:32:45,729 - src.features.feature_engineering - [32mINFO[0m - Starting feature engineering pipeline
+2025-06-30 11:32:45,729 - src.features.feature_engineering - [32mINFO[0m - Creating interaction features
+2025-06-30 11:32:45,743 - src.features.feature_engineering - [32mINFO[0m - Created 5 interaction features: ['gender_x_seniorcitizen', 'gender_x_partner', 'gender_x_dependents', 'gender_x_tenure', 'gender_x_phoneservice']
+2025-06-30 11:32:45,744 - src.features.feature_engineering - [32mINFO[0m - Creating polynomial features with degree 2
+2025-06-30 11:32:45,754 - src.features.feature_engineering - [32mINFO[0m - Created 3 polynomial features: ['gender_squared', 'seniorcitizen_squared', 'partner_squared']
+2025-06-30 11:32:45,755 - src.features.feature_engineering - [32mINFO[0m - Creating binned features with 5 bins
+2025-06-30 11:32:45,783 - src.features.feature_engineering - [32mINFO[0m - Created 3 binned features: ['tenure_binned', 'monthlycharges_binned', 'totalcharges_binned']
+2025-06-30 11:32:45,785 - src.features.feature_engineering - [32mINFO[0m - Creating ratio features
+2025-06-30 11:32:45,794 - src.features.feature_engineering - [32mINFO[0m - Created 3 ratio features: ['charges_per_tenure', 'total_to_monthly_ratio', 'avg_charges_per_month']
+2025-06-30 11:32:45,795 - src.features.feature_engineering - [32mINFO[0m - Creating aggregate features
+2025-06-30 11:32:45,887 - src.features.feature_engineering - [32mINFO[0m - Created 2 aggregate features: ['total_services', 'binary_features_sum']
+2025-06-30 11:32:45,888 - src.features.feature_engineering - [32mINFO[0m - Selecting top 20 features using univariate tests
+2025-06-30 11:32:45,945 - src.features.feature_engineering - [32mINFO[0m - Selected 20 features using univariate tests
+2025-06-30 11:32:45,947 - src.features.feature_engineering - [32mINFO[0m - Selecting 15 features using RFE
+2025-06-30 11:32:49,995 - src.features.feature_engineering - [32mINFO[0m - Selected 15 features using RFE
+2025-06-30 11:32:50,000 - src.features.feature_engineering - [32mINFO[0m - Applying PCA dimensionality reduction with 10 components
+2025-06-30 11:32:50,037 - src.features.feature_engineering - [32mINFO[0m - Reduced features from 23 to 10 using PCA
+2025-06-30 11:32:50,039 - src.features.feature_engineering - [32mINFO[0m - Feature engineering completed: {'original_features': 26, 'engineered_features': 42, 'selected_features': 23, 'final_features': 23, 'pca_components': 10, 'feature_names': ['seniorcitizen', 'streamingtv_yes', 'paperlessbilling', 'onlinesecurity_yes', 'total_services', 'streamingmovies_yes', 'techsupport_no internet service', 'dependents', 'totalcharges_binned', 'onlinesecurity_no internet service', 'streamingmovies_no internet service', 'streamingtv_no internet service', 'deviceprotection_no internet service', 'tenure', 'internetservice', 'monthlycharges', 'tenure_binned', 'techsupport_yes', 'monthlycharges_binned', 'totalcharges', 'onlinebackup_no internet service', 'contract', 'seniorcitizen_squared'], 'engineered_feature_names': ['gender_x_seniorcitizen', 'gender_x_partner', 'gender_x_dependents', 'gender_x_tenure', 'gender_x_phoneservice', 'gender_squared', 'seniorcitizen_squared', 'partner_squared', 'tenure_binned', 'monthlycharges_binned', 'totalcharges_binned', 'charges_per_tenure', 'total_to_monthly_ratio', 'avg_charges_per_month', 'total_services', 'binary_features_sum']}
+2025-06-30 11:32:50,043 - src.api.prediction_service - [32mINFO[0m - Training logistic_regression...
+2025-06-30 11:32:50,186 - src.api.prediction_service - [32mINFO[0m - ✓ logistic_regression trained successfully
+2025-06-30 11:32:50,187 - src.api.prediction_service - [32mINFO[0m - Training random_forest...
+2025-06-30 11:32:54,060 - src.api.prediction_service - [32mINFO[0m - ✓ random_forest trained successfully
+2025-06-30 11:32:54,061 - src.api.prediction_service - [32mINFO[0m - Training gradient_boosting...
+2025-06-30 11:33:03,263 - src.api.prediction_service - [32mINFO[0m - ✓ gradient_boosting trained successfully
+2025-06-30 11:33:03,265 - src.api.prediction_service - [32mINFO[0m - All models trained successfully
+2025-06-30 11:33:03,268 - src.api.prediction_service - [32mINFO[0m - Loading model metadata...
+2025-06-30 11:33:03,271 - src.api.prediction_service - [32mINFO[0m - Loaded feature importance data
+2025-06-30 11:39:14,092 - src.data.data_loader - [32mINFO[0m - Dataset already exists at C:\Users\Abhij\Downloads\churn assignment\data\raw\telco_customer_churn.csv
+2025-06-30 11:39:14,093 - src.data.data_loader - [32mINFO[0m - Loading data from C:\Users\Abhij\Downloads\churn assignment\data\raw\telco_customer_churn.csv
+2025-06-30 11:39:14,347 - src.data.data_loader - [32mINFO[0m - Data loaded successfully. Shape: (7043, 21)
+2025-06-30 11:39:14,372 - src.data.data_loader - [32mINFO[0m - Starting initial data cleaning
+2025-06-30 11:39:14,656 - src.data.data_loader - [32mINFO[0m - Initial cleaning completed. Shape: (7043, 21)
+2025-06-30 11:39:14,657 - src.data.data_loader - [32mINFO[0m - Validating data quality
+2025-06-30 11:39:14,703 - src.utils.validators - [32mINFO[0m - DataFrame validation passed. Shape: (7043, 21)
+2025-06-30 11:39:14,707 - src.utils.validators - [32mINFO[0m - Target column validation completed. Unique values: 2
+2025-06-30 11:39:14,723 - src.utils.validators - [32mINFO[0m - Feature validation completed. Numerical: 3, Categorical: 16
+2025-06-30 11:39:14,726 - src.data.data_loader - [32mINFO[0m - Data validation passed successfully
+2025-06-30 11:39:14,926 - src.data.data_loader - [32mINFO[0m - Dataset info: (7043, 21) shape, {'customerid': 0, 'gender': 0, 'seniorcitizen': 0, 'partner': 0, 'dependents': 0, 'tenure': 0, 'phoneservice': 0, 'multiplelines': 0, 'internetservice': 0, 'onlinesecurity': 0, 'onlinebackup': 0, 'deviceprotection': 0, 'techsupport': 0, 'streamingtv': 0, 'streamingmovies': 0, 'contract': 0, 'paperlessbilling': 0, 'paymentmethod': 0, 'monthlycharges': 0, 'totalcharges': 11, 'churn': 0} missing values
+2025-06-30 11:39:15,043 - src.data.data_loader - [32mINFO[0m - Processed data saved to C:\Users\Abhij\Downloads\churn assignment\data\processed\processed_data.csv
+2025-06-30 11:39:15,095 - src.api.prediction_service - [32mINFO[0m - Loading trained models...
+2025-06-30 11:39:17,077 - src.api.prediction_service - [32mINFO[0m - Created model logistic_regression with optimized parameters
+2025-06-30 11:39:17,078 - src.api.prediction_service - [32mINFO[0m - Loaded model: logistic_regression
+2025-06-30 11:39:17,078 - src.api.prediction_service - [32mINFO[0m - Created model random_forest with optimized parameters
+2025-06-30 11:39:17,078 - src.api.prediction_service - [32mINFO[0m - Loaded model: random_forest
+2025-06-30 11:39:17,079 - src.api.prediction_service - [32mINFO[0m - Created model gradient_boosting with optimized parameters
+2025-06-30 11:39:17,079 - src.api.prediction_service - [32mINFO[0m - Loaded model: gradient_boosting
+2025-06-30 11:39:17,079 - src.api.prediction_service - [32mINFO[0m - Best model set to: gradient_boosting
+2025-06-30 11:39:17,079 - src.api.prediction_service - [32mINFO[0m - Loading preprocessors...
+2025-06-30 11:39:17,080 - src.api.prediction_service - [32mINFO[0m - Training models with data...
+2025-06-30 11:39:17,507 - src.data.data_loader - [32mINFO[0m - Dataset already exists at C:\Users\Abhij\Downloads\churn assignment\data\raw\telco_customer_churn.csv
+2025-06-30 11:39:17,509 - src.data.data_loader - [32mINFO[0m - Loading data from C:\Users\Abhij\Downloads\churn assignment\data\raw\telco_customer_churn.csv
+2025-06-30 11:39:17,563 - src.data.data_loader - [32mINFO[0m - Data loaded successfully. Shape: (7043, 21)
+2025-06-30 11:39:17,563 - src.data.data_loader - [32mINFO[0m - Starting initial data cleaning
+2025-06-30 11:39:17,702 - src.data.data_loader - [32mINFO[0m - Initial cleaning completed. Shape: (7043, 21)
+2025-06-30 11:39:17,702 - src.data.data_loader - [32mINFO[0m - Validating data quality
+2025-06-30 11:39:17,740 - src.utils.validators - [32mINFO[0m - DataFrame validation passed. Shape: (7043, 21)
+2025-06-30 11:39:17,741 - src.utils.validators - [32mINFO[0m - Target column validation completed. Unique values: 2
+2025-06-30 11:39:17,758 - src.utils.validators - [32mINFO[0m - Feature validation completed. Numerical: 3, Categorical: 16
+2025-06-30 11:39:17,758 - src.data.data_loader - [32mINFO[0m - Data validation passed successfully
+2025-06-30 11:39:17,875 - src.data.data_loader - [32mINFO[0m - Dataset info: (7043, 21) shape, {'customerid': 0, 'gender': 0, 'seniorcitizen': 0, 'partner': 0, 'dependents': 0, 'tenure': 0, 'phoneservice': 0, 'multiplelines': 0, 'internetservice': 0, 'onlinesecurity': 0, 'onlinebackup': 0, 'deviceprotection': 0, 'techsupport': 0, 'streamingtv': 0, 'streamingmovies': 0, 'contract': 0, 'paperlessbilling': 0, 'paymentmethod': 0, 'monthlycharges': 0, 'totalcharges': 11, 'churn': 0} missing values
+2025-06-30 11:39:17,977 - src.data.data_loader - [32mINFO[0m - Processed data saved to C:\Users\Abhij\Downloads\churn assignment\data\processed\processed_data.csv
+2025-06-30 11:39:17,978 - src.data.preprocessing - [32mINFO[0m - Starting complete preprocessing pipeline
+2025-06-30 11:39:18,009 - src.utils.validators - [32mINFO[0m - DataFrame validation passed. Shape: (7043, 21)
+2025-06-30 11:39:18,012 - src.data.preprocessing - [32mINFO[0m - Handling missing values using median strategy
+2025-06-30 11:39:18,091 - src.data.preprocessing - [32mINFO[0m - Missing value imputation completed. Remaining missing values: 0
+2025-06-30 11:39:18,092 - src.data.preprocessing - [32mINFO[0m - Detecting outliers using iqr method
+2025-06-30 11:39:18,135 - src.data.preprocessing - [32mINFO[0m - Outliers detected (iqr): {'gender_outlier_iqr': 0, 'seniorcitizen_outlier_iqr': 1142, 'partner_outlier_iqr': 0, 'dependents_outlier_iqr': 0, 'tenure_outlier_iqr': 0, 'phoneservice_outlier_iqr': 682, 'paperlessbilling_outlier_iqr': 0, 'monthlycharges_outlier_iqr': 0, 'totalcharges_outlier_iqr': 0}
+2025-06-30 11:39:18,135 - src.data.preprocessing - [32mINFO[0m - Detecting outliers using zscore method
+2025-06-30 11:39:18,161 - src.data.preprocessing - [32mINFO[0m - Outliers detected (zscore): {'gender_outlier_zscore': 0, 'seniorcitizen_outlier_zscore': 0, 'partner_outlier_zscore': 0, 'dependents_outlier_zscore': 0, 'tenure_outlier_zscore': 0, 'phoneservice_outlier_zscore': 682, 'paperlessbilling_outlier_zscore': 0, 'monthlycharges_outlier_zscore': 0, 'totalcharges_outlier_zscore': 0}
+2025-06-30 11:39:18,161 - src.data.preprocessing - [32mINFO[0m - Detecting outliers using isolation_forest method
+2025-06-30 11:39:18,729 - src.data.preprocessing - [32mINFO[0m - Outliers detected (isolation_forest): {'outlier_isolation_forest': 705}
+2025-06-30 11:39:18,730 - src.data.preprocessing - [32mINFO[0m - Encoding categorical features
+2025-06-30 11:39:18,794 - src.data.preprocessing - [33mWARNING[0m - Category encoders not available. Skipping target encoding.
+2025-06-30 11:39:18,797 - src.data.preprocessing - [32mINFO[0m - Applying one-hot encoding to columns: ['onlinesecurity', 'onlinebackup', 'deviceprotection', 'techsupport', 'streamingtv', 'streamingmovies']
+2025-06-30 11:39:18,825 - src.data.preprocessing - [33mWARNING[0m - Column multiplelines is still object type, converting to category codes
+2025-06-30 11:39:18,827 - src.data.preprocessing - [33mWARNING[0m - Column internetservice is still object type, converting to category codes
+2025-06-30 11:39:18,828 - src.data.preprocessing - [33mWARNING[0m - Column contract is still object type, converting to category codes
+2025-06-30 11:39:18,830 - src.data.preprocessing - [33mWARNING[0m - Column paymentmethod is still object type, converting to category codes
+2025-06-30 11:39:18,837 - src.data.preprocessing - [32mINFO[0m - Categorical encoding completed. New shape: (7043, 26)
+2025-06-30 11:39:18,838 - src.data.preprocessing - [32mINFO[0m - Scaling features using standard method
+2025-06-30 11:39:18,856 - src.data.preprocessing - [32mINFO[0m - Feature scaling completed using standard method
+2025-06-30 11:39:18,857 - src.data.preprocessing - [32mINFO[0m - Preprocessing pipeline completed. Final shape: (7043, 26)
+2025-06-30 11:39:18,859 - src.features.feature_engineering - [32mINFO[0m - Starting feature engineering pipeline
+2025-06-30 11:39:18,859 - src.features.feature_engineering - [32mINFO[0m - Creating interaction features
+2025-06-30 11:39:18,870 - src.features.feature_engineering - [32mINFO[0m - Created 5 interaction features: ['gender_x_seniorcitizen', 'gender_x_partner', 'gender_x_dependents', 'gender_x_tenure', 'gender_x_phoneservice']
+2025-06-30 11:39:18,871 - src.features.feature_engineering - [32mINFO[0m - Creating polynomial features with degree 2
+2025-06-30 11:39:18,878 - src.features.feature_engineering - [32mINFO[0m - Created 3 polynomial features: ['gender_squared', 'seniorcitizen_squared', 'partner_squared']
+2025-06-30 11:39:18,879 - src.features.feature_engineering - [32mINFO[0m - Creating binned features with 5 bins
+2025-06-30 11:39:18,904 - src.features.feature_engineering - [32mINFO[0m - Created 3 binned features: ['tenure_binned', 'monthlycharges_binned', 'totalcharges_binned']
+2025-06-30 11:39:18,905 - src.features.feature_engineering - [32mINFO[0m - Creating ratio features
+2025-06-30 11:39:18,911 - src.features.feature_engineering - [32mINFO[0m - Created 3 ratio features: ['charges_per_tenure', 'total_to_monthly_ratio', 'avg_charges_per_month']
+2025-06-30 11:39:18,912 - src.features.feature_engineering - [32mINFO[0m - Creating aggregate features
+2025-06-30 11:39:18,989 - src.features.feature_engineering - [32mINFO[0m - Created 2 aggregate features: ['total_services', 'binary_features_sum']
+2025-06-30 11:39:18,989 - src.features.feature_engineering - [32mINFO[0m - Selecting top 20 features using univariate tests
+2025-06-30 11:39:19,045 - src.features.feature_engineering - [32mINFO[0m - Selected 20 features using univariate tests
+2025-06-30 11:39:19,046 - src.features.feature_engineering - [32mINFO[0m - Selecting 15 features using RFE
+2025-06-30 11:39:22,280 - src.features.feature_engineering - [32mINFO[0m - Selected 15 features using RFE
+2025-06-30 11:39:22,284 - src.features.feature_engineering - [32mINFO[0m - Applying PCA dimensionality reduction with 10 components
+2025-06-30 11:39:22,292 - src.features.feature_engineering - [32mINFO[0m - Reduced features from 23 to 10 using PCA
+2025-06-30 11:39:22,292 - src.features.feature_engineering - [32mINFO[0m - Feature engineering completed: {'original_features': 26, 'engineered_features': 42, 'selected_features': 23, 'final_features': 23, 'pca_components': 10, 'feature_names': ['streamingmovies_yes', 'onlinebackup_no internet service', 'streamingtv_no internet service', 'monthlycharges', 'monthlycharges_binned', 'seniorcitizen', 'totalcharges', 'tenure_binned', 'dependents', 'streamingmovies_no internet service', 'onlinesecurity_no internet service', 'techsupport_yes', 'techsupport_no internet service', 'deviceprotection_no internet service', 'streamingtv_yes', 'tenure', 'totalcharges_binned', 'total_services', 'contract', 'seniorcitizen_squared', 'paperlessbilling', 'onlinesecurity_yes', 'internetservice'], 'engineered_feature_names': ['gender_x_seniorcitizen', 'gender_x_partner', 'gender_x_dependents', 'gender_x_tenure', 'gender_x_phoneservice', 'gender_squared', 'seniorcitizen_squared', 'partner_squared', 'tenure_binned', 'monthlycharges_binned', 'totalcharges_binned', 'charges_per_tenure', 'total_to_monthly_ratio', 'avg_charges_per_month', 'total_services', 'binary_features_sum']}
+2025-06-30 11:39:22,296 - src.api.prediction_service - [32mINFO[0m - Training logistic_regression...
+2025-06-30 11:39:22,386 - src.api.prediction_service - [32mINFO[0m - ✓ logistic_regression trained successfully
+2025-06-30 11:39:22,387 - src.api.prediction_service - [32mINFO[0m - Training random_forest...
+2025-06-30 11:39:25,410 - src.api.prediction_service - [32mINFO[0m - ✓ random_forest trained successfully
+2025-06-30 11:39:25,411 - src.api.prediction_service - [32mINFO[0m - Training gradient_boosting...
+2025-06-30 11:39:33,469 - src.api.prediction_service - [32mINFO[0m - ✓ gradient_boosting trained successfully
+2025-06-30 11:39:33,469 - src.api.prediction_service - [32mINFO[0m - All models trained successfully
+2025-06-30 11:39:33,472 - src.api.prediction_service - [32mINFO[0m - Loading model metadata...
+2025-06-30 11:39:33,476 - src.api.prediction_service - [32mINFO[0m - Loaded feature importance data
