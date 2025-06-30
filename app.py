@@ -368,7 +368,8 @@ def main():
     st.markdown("""
     <div style="text-align: center; margin-bottom: 3rem; color: #cccccc; font-size: 1.2rem;">
         Advanced Machine Learning Platform with High Contrast Interface<br>
-        <small style="color: #0066cc;">Powered by AI • Real-time Predictions • Professional Analytics</small>
+        <small style="color: #0066cc;">Powered by AI • Real-time Predictions • Professional Analytics</small><br>
+        <small style="color: #666666;">Version 2.0 - Enhanced Visibility & Professional Charts</small>
     </div>
     """, unsafe_allow_html=True)
     
