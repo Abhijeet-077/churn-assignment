@@ -459,14 +459,20 @@ def show_data_upload():
             # Basic statistics
             col1, col2, col3, col4 = st.columns(4)
 
+            missing_count = df.isnull().sum().sum()
+            missing_percentage = (missing_count / (len(df) * len(df.columns))) * 100
+            numeric_cols = len(df.select_dtypes(include=[np.number]).columns)
+            categorical_cols = len(df.columns) - numeric_cols
+
             with col1:
-                st.metric("Rows", f"{len(df):,}")
+                st.metric("Total Rows", f"{len(df):,}")
             with col2:
-                st.metric("Columns", len(df.columns))
+                st.metric("Total Columns", f"{len(df.columns)}", f"{numeric_cols} numeric, {categorical_cols} categorical")
             with col3:
-                st.metric("Missing Values", f"{df.isnull().sum().sum():,}")
+                st.metric("Missing Values", f"{missing_count:,}", f"{missing_percentage:.1f}% of total")
             with col4:
-                st.metric("Numeric Columns", len(df.select_dtypes(include=[np.number]).columns))
+                memory_usage = df.memory_usage(deep=True).sum() / 1024 / 1024  # MB
+                st.metric("Memory Usage", f"{memory_usage:.1f} MB")
 
             # Data preview
             st.markdown("#### 👀 Data Preview")
@@ -477,7 +483,7 @@ def show_data_upload():
 
             col_info = pd.DataFrame({
                 'Column': df.columns,
-                'Data Type': df.dtypes,
+                'Data Type': df.dtypes.astype(str),
                 'Non-Null Count': df.count(),
                 'Null Count': df.isnull().sum(),
                 'Unique Values': df.nunique()
@@ -509,12 +515,37 @@ def show_data_upload():
                         labels={'x': target_column, 'y': 'Count'}
                     )
 
+                    # High contrast styling for target distribution
                     fig.update_layout(
-                        title_font_size=16,
+                        title_font_size=20,
                         title_x=0.5,
+                        title_font_color='#000000',
+                        title_font_family='Inter',
                         plot_bgcolor='white',
                         paper_bgcolor='white',
-                        font=dict(size=12)
+                        font=dict(size=14, color='#000000', family='Inter'),
+                        margin=dict(l=60, r=50, t=80, b=80),
+                        xaxis=dict(
+                            title_font=dict(size=16, color='#000000', family='Inter'),
+                            tickfont=dict(size=12, color='#000000'),
+                            gridcolor='#e0e0e0',
+                            linecolor='#000000',
+                            linewidth=2,
+                            tickangle=0
+                        ),
+                        yaxis=dict(
+                            title_font=dict(size=16, color='#000000', family='Inter'),
+                            tickfont=dict(size=12, color='#000000'),
+                            gridcolor='#e0e0e0',
+                            linecolor='#000000',
+                            linewidth=2
+                        )
+                    )
+
+                    # Update traces for better visibility
+                    fig.update_traces(
+                        marker=dict(line=dict(color='#000000', width=1)),
+                        hovertemplate='<b>%{x}</b><br>Count: %{y:,}<extra></extra>'
                     )
 
                     st.plotly_chart(fig, use_container_width=True)
@@ -738,13 +769,13 @@ def show_ml_training():
                 col1, col2, col3, col4 = st.columns(4)
 
                 with col1:
-                    st.metric("Accuracy", f"{accuracy:.3f}")
+                    st.metric("Accuracy", f"{accuracy:.3f}", f"{accuracy*100:.1f}%")
                 with col2:
-                    st.metric("Precision", f"{precision:.3f}")
+                    st.metric("Precision", f"{precision:.3f}", f"{precision*100:.1f}%")
                 with col3:
-                    st.metric("Recall", f"{recall:.3f}")
+                    st.metric("Recall", f"{recall:.3f}", f"{recall*100:.1f}%")
                 with col4:
-                    st.metric("F1-Score", f"{f1:.3f}")
+                    st.metric("F1-Score", f"{f1:.3f}", f"{f1*100:.1f}%")
 
                 # Confusion matrix
                 cm = confusion_matrix(y_test, y_pred)
@@ -757,12 +788,34 @@ def show_ml_training():
                     color_continuous_scale="Blues"
                 )
 
+                # High contrast styling for confusion matrix
                 fig.update_layout(
-                    title_font_size=16,
+                    title_font_size=20,
                     title_x=0.5,
+                    title_font_color='#000000',
+                    title_font_family='Inter',
                     plot_bgcolor='white',
                     paper_bgcolor='white',
-                    font=dict(size=12)
+                    font=dict(size=14, color='#000000', family='Inter'),
+                    margin=dict(l=60, r=60, t=80, b=60),
+                    xaxis=dict(
+                        title_font=dict(size=16, color='#000000', family='Inter'),
+                        tickfont=dict(size=12, color='#000000'),
+                        linecolor='#000000',
+                        linewidth=2
+                    ),
+                    yaxis=dict(
+                        title_font=dict(size=16, color='#000000', family='Inter'),
+                        tickfont=dict(size=12, color='#000000'),
+                        linecolor='#000000',
+                        linewidth=2
+                    )
+                )
+
+                # Update text annotations for better visibility
+                fig.update_traces(
+                    textfont=dict(size=16, color='white', family='Inter'),
+                    hovertemplate='Actual: %{y}<br>Predicted: %{x}<br>Count: %{z:,}<extra></extra>'
                 )
 
                 st.plotly_chart(fig, use_container_width=True)
@@ -784,12 +837,35 @@ def show_ml_training():
                         title='📊 Top 10 Most Important Features'
                     )
 
+                    # High contrast styling for feature importance
                     fig.update_layout(
-                        title_font_size=16,
+                        title_font_size=20,
                         title_x=0.5,
+                        title_font_color='#000000',
+                        title_font_family='Inter',
                         plot_bgcolor='white',
                         paper_bgcolor='white',
-                        font=dict(size=12)
+                        font=dict(size=14, color='#000000', family='Inter'),
+                        margin=dict(l=120, r=50, t=80, b=60),
+                        xaxis=dict(
+                            title_font=dict(size=16, color='#000000', family='Inter'),
+                            tickfont=dict(size=12, color='#000000'),
+                            gridcolor='#e0e0e0',
+                            linecolor='#000000',
+                            linewidth=2
+                        ),
+                        yaxis=dict(
+                            title_font=dict(size=16, color='#000000', family='Inter'),
+                            tickfont=dict(size=12, color='#000000'),
+                            linecolor='#000000',
+                            linewidth=2
+                        )
+                    )
+
+                    # Update traces for better visibility
+                    fig.update_traces(
+                        marker=dict(line=dict(color='#000000', width=1)),
+                        hovertemplate='<b>%{y}</b><br>Importance: %{x:.4f}<extra></extra>'
                     )
 
                     st.plotly_chart(fig, use_container_width=True)
@@ -818,36 +894,16 @@ def show_dashboard():
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        st.markdown(f"""
-        <div class="metric-card">
-            <div class="metric-value">{total_customers:,}</div>
-            <div class="metric-label">Total Customers</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
+        st.metric("Total Customers", f"{total_customers:,}")
+
     with col2:
-        st.markdown(f"""
-        <div class="metric-card">
-            <div class="metric-value">{churn_rate:.1f}%</div>
-            <div class="metric-label">Churn Rate</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
+        st.metric("Churn Rate", f"{churn_rate:.1f}%")
+
     with col3:
-        st.markdown(f"""
-        <div class="metric-card">
-            <div class="metric-value">{avg_tenure:.1f}</div>
-            <div class="metric-label">Avg Tenure</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
+        st.metric("Avg Tenure", f"{avg_tenure:.1f} months")
+
     with col4:
-        st.markdown(f"""
-        <div class="metric-card">
-            <div class="metric-value">${avg_charges:.0f}</div>
-            <div class="metric-label">Avg Charges</div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.metric("Avg Charges", f"${avg_charges:.2f}")
     
     # Charts
     st.markdown("### 📈 Data Visualization")
@@ -861,21 +917,32 @@ def show_dashboard():
         fig = px.pie(values=churn_counts.values, names=churn_counts.index,
                      title='📊 Customer Churn Distribution')
 
-        # Clean, professional chart styling
+        # High contrast, professional chart styling
         fig.update_layout(
-            title_font_size=16,
+            title_font_size=20,
             title_x=0.5,
+            title_font_color='#000000',
+            title_font_family='Inter',
             showlegend=True,
-            font=dict(size=12),
+            font=dict(size=14, color='#000000', family='Inter'),
             plot_bgcolor='white',
-            paper_bgcolor='white'
+            paper_bgcolor='white',
+            margin=dict(l=50, r=50, t=80, b=50),
+            legend=dict(
+                font=dict(size=14, color='#000000'),
+                bgcolor='rgba(255,255,255,0.8)',
+                bordercolor='#000000',
+                borderwidth=1
+            )
         )
 
-        # Add percentage labels
+        # Add percentage labels with high contrast
         fig.update_traces(
             textposition='inside',
             textinfo='percent+label',
-            hovertemplate='<b>%{label}</b><br>Count: %{value}<br>Percentage: %{percent}<extra></extra>'
+            textfont=dict(size=14, color='white', family='Inter'),
+            hovertemplate='<b>%{label}</b><br>Count: %{value:,}<br>Percentage: %{percent}<extra></extra>',
+            marker=dict(line=dict(color='#000000', width=2))
         )
 
         st.plotly_chart(fig, use_container_width=True)
@@ -888,22 +955,45 @@ def show_dashboard():
                           barmode='overlay',
                           opacity=0.7)
 
-        # Clean, professional chart styling
+        # High contrast, professional chart styling
         fig.update_layout(
-            title_font_size=16,
+            title_font_size=20,
             title_x=0.5,
+            title_font_color='#000000',
+            title_font_family='Inter',
             xaxis_title="Monthly Charges ($)",
             yaxis_title="Number of Customers",
+            xaxis_title_font=dict(size=16, color='#000000', family='Inter'),
+            yaxis_title_font=dict(size=16, color='#000000', family='Inter'),
+            xaxis=dict(
+                tickfont=dict(size=12, color='#000000'),
+                gridcolor='#e0e0e0',
+                linecolor='#000000',
+                linewidth=2
+            ),
+            yaxis=dict(
+                tickfont=dict(size=12, color='#000000'),
+                gridcolor='#e0e0e0',
+                linecolor='#000000',
+                linewidth=2
+            ),
             showlegend=True,
-            font=dict(size=12),
+            font=dict(size=14, color='#000000', family='Inter'),
             bargap=0.1,
             plot_bgcolor='white',
-            paper_bgcolor='white'
+            paper_bgcolor='white',
+            margin=dict(l=60, r=50, t=80, b=60),
+            legend=dict(
+                font=dict(size=14, color='#000000'),
+                bgcolor='rgba(255,255,255,0.9)',
+                bordercolor='#000000',
+                borderwidth=1
+            )
         )
 
-        # Improve hover information
+        # Improve hover information with number formatting
         fig.update_traces(
-            hovertemplate='<b>%{fullData.name}</b><br>Monthly Charges: $%{x}<br>Count: %{y}<extra></extra>'
+            hovertemplate='<b>%{fullData.name}</b><br>Monthly Charges: $%{x:.2f}<br>Count: %{y:,}<extra></extra>'
         )
 
         st.plotly_chart(fig, use_container_width=True)
@@ -1021,23 +1111,48 @@ def show_data_explorer():
         fig = px.bar(contract_churn, title='📊 Customer Churn by Contract Type',
                      barmode='group')
 
-        # Clean, professional chart styling
+        # High contrast, professional chart styling
         fig.update_layout(
-            title_font_size=16,
+            title_font_size=20,
             title_x=0.5,
+            title_font_color='#000000',
+            title_font_family='Inter',
             xaxis_title="Contract Type",
             yaxis_title="Number of Customers",
+            xaxis_title_font=dict(size=16, color='#000000', family='Inter'),
+            yaxis_title_font=dict(size=16, color='#000000', family='Inter'),
+            xaxis=dict(
+                tickfont=dict(size=12, color='#000000'),
+                gridcolor='#e0e0e0',
+                linecolor='#000000',
+                linewidth=2,
+                tickangle=0
+            ),
+            yaxis=dict(
+                tickfont=dict(size=12, color='#000000'),
+                gridcolor='#e0e0e0',
+                linecolor='#000000',
+                linewidth=2
+            ),
             showlegend=True,
-            font=dict(size=12),
+            font=dict(size=14, color='#000000', family='Inter'),
             bargap=0.2,
             bargroupgap=0.1,
             plot_bgcolor='white',
-            paper_bgcolor='white'
+            paper_bgcolor='white',
+            margin=dict(l=60, r=50, t=80, b=80),
+            legend=dict(
+                font=dict(size=14, color='#000000'),
+                bgcolor='rgba(255,255,255,0.9)',
+                bordercolor='#000000',
+                borderwidth=1
+            )
         )
 
-        # Improve hover information
+        # Improve hover information with number formatting
         fig.update_traces(
-            hovertemplate='<b>%{fullData.name}</b><br>Contract: %{x}<br>Count: %{y}<extra></extra>'
+            hovertemplate='<b>%{fullData.name}</b><br>Contract: %{x}<br>Count: %{y:,}<extra></extra>',
+            marker=dict(line=dict(color='#000000', width=1))
         )
 
         st.plotly_chart(fig, use_container_width=True)
@@ -1046,24 +1161,48 @@ def show_data_explorer():
         # Tenure vs Monthly Charges
         fig = px.scatter(df, x='Tenure', y='MonthlyCharges', color='Churn',
                         title='📈 Customer Tenure vs Monthly Charges',
-                        opacity=0.7,
+                        opacity=0.8,
                         size_max=10)
 
-        # Clean, professional chart styling
+        # High contrast, professional chart styling
         fig.update_layout(
-            title_font_size=16,
+            title_font_size=20,
             title_x=0.5,
+            title_font_color='#000000',
+            title_font_family='Inter',
             xaxis_title="Tenure (Months)",
             yaxis_title="Monthly Charges ($)",
+            xaxis_title_font=dict(size=16, color='#000000', family='Inter'),
+            yaxis_title_font=dict(size=16, color='#000000', family='Inter'),
+            xaxis=dict(
+                tickfont=dict(size=12, color='#000000'),
+                gridcolor='#e0e0e0',
+                linecolor='#000000',
+                linewidth=2
+            ),
+            yaxis=dict(
+                tickfont=dict(size=12, color='#000000'),
+                gridcolor='#e0e0e0',
+                linecolor='#000000',
+                linewidth=2
+            ),
             showlegend=True,
-            font=dict(size=12),
+            font=dict(size=14, color='#000000', family='Inter'),
             plot_bgcolor='white',
-            paper_bgcolor='white'
+            paper_bgcolor='white',
+            margin=dict(l=60, r=50, t=80, b=60),
+            legend=dict(
+                font=dict(size=14, color='#000000'),
+                bgcolor='rgba(255,255,255,0.9)',
+                bordercolor='#000000',
+                borderwidth=1
+            )
         )
 
-        # Improve hover information
+        # Improve hover information with number formatting
         fig.update_traces(
-            hovertemplate='<b>%{fullData.name}</b><br>Tenure: %{x} months<br>Monthly Charges: $%{y}<extra></extra>'
+            hovertemplate='<b>%{fullData.name}</b><br>Tenure: %{x} months<br>Monthly Charges: $%{y:.2f}<extra></extra>',
+            marker=dict(size=8, line=dict(color='#000000', width=1))
         )
 
         st.plotly_chart(fig, use_container_width=True)
