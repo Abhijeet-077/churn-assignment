@@ -28,179 +28,241 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Cyberpunk CSS Theme
+# High Contrast Dark Theme with Blue Elements
 st.markdown("""
 <style>
-    /* Import Cyberpunk Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-    
-    /* Global Dark Theme */
+    /* Import Professional Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    /* Global High Contrast Dark Theme */
     .stApp {
-        font-family: 'Rajdhani', sans-serif;
-        background: #0d1117;
+        font-family: 'Inter', sans-serif;
+        background: #000000;
         color: #ffffff;
     }
-    
+
     /* Main Container */
     .main .block-container {
         background: #1a1a1a;
-        border-radius: 20px;
-        border: 2px solid #00ffff;
-        box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        border-radius: 12px;
+        border: 2px solid #0066cc;
+        box-shadow: 0 4px 20px rgba(0, 102, 204, 0.3);
         padding: 2rem;
         margin: 1rem;
     }
-    
-    /* Cyberpunk Header */
+
+    /* Header */
     .main-header {
-        font-family: 'Orbitron', monospace;
-        font-size: 3.5rem;
-        font-weight: 900;
-        color: #00ffff;
+        font-family: 'Inter', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        color: #ffffff;
         text-align: center;
         margin-bottom: 1rem;
-        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
-        letter-spacing: 2px;
-        animation: neonGlow 2s ease-in-out infinite alternate;
+        letter-spacing: 1px;
     }
-    
-    @keyframes neonGlow {
-        0% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
-        100% { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 50px #ff00ff; }
-    }
-    
+
     /* Metric Cards */
     .metric-card {
-        background: #2d2d2d;
-        padding: 2rem;
-        border-radius: 16px;
-        border: 2px solid #00ffff;
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        background: #2a2a2a;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 2px solid #0066cc;
+        box-shadow: 0 2px 10px rgba(0, 102, 204, 0.2);
         margin-bottom: 1rem;
         transition: all 0.3s ease;
     }
-    
+
     .metric-card:hover {
-        border-color: #ff00ff;
-        box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
-        transform: translateY(-5px);
-    }
-    
-    .metric-value {
-        font-family: 'Orbitron', monospace;
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #00ffff;
-        text-shadow: 0 0 10px #00ffff;
-    }
-    
-    .metric-label {
-        font-size: 1rem;
-        color: #e6e6e6;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        text-shadow: 0 0 5px #ff00ff;
-    }
-    
-    /* Prediction Results */
-    .prediction-result {
-        font-family: 'Orbitron', monospace;
-        font-size: 1.8rem;
-        font-weight: 600;
-        padding: 2rem;
-        border-radius: 16px;
-        text-align: center;
-        margin: 2rem 0;
-        border: 3px solid;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .churn-yes {
-        background: #1a1a1a;
-        color: #ff0040;
-        border-color: #ff0040;
-        box-shadow: 0 0 30px rgba(255, 0, 64, 0.5);
-        text-shadow: 0 0 10px #ff0040;
-    }
-    
-    .churn-no {
-        background: #1a1a1a;
-        color: #00ff00;
-        border-color: #00ff00;
-        box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
-        text-shadow: 0 0 10px #00ff00;
-    }
-    
-    /* Sidebar */
-    .css-1d391kg {
-        background: #0d1117;
-        border-right: 2px solid #00ffff;
-        box-shadow: 2px 0 20px rgba(0, 255, 255, 0.3);
-    }
-    
-    /* Buttons */
-    .stButton > button {
-        background: #1a1a1a;
-        color: #00ffff;
-        border: 2px solid #00ffff;
-        border-radius: 12px;
-        padding: 0.75rem 2rem;
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 600;
-        text-shadow: 0 0 5px #00ffff;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
-    }
-    
-    .stButton > button:hover {
-        background: #2d2d2d;
-        border-color: #ff00ff;
-        color: #ff00ff;
-        box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
-        text-shadow: 0 0 10px #ff00ff;
+        border-color: #0080ff;
+        box-shadow: 0 4px 15px rgba(0, 128, 255, 0.3);
         transform: translateY(-2px);
     }
-    
+
+    .metric-value {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    .metric-label {
+        font-size: 0.9rem;
+        color: #cccccc;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Prediction Results */
+    .prediction-result {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        margin: 2rem 0;
+        border: 2px solid;
+    }
+
+    .churn-yes {
+        background: #2a2a2a;
+        color: #ffffff;
+        border-color: #ff4444;
+        box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+    }
+
+    .churn-no {
+        background: #2a2a2a;
+        color: #ffffff;
+        border-color: #44ff44;
+        box-shadow: 0 4px 15px rgba(68, 255, 68, 0.3);
+    }
+
+    /* Sidebar */
+    .css-1d391kg {
+        background: #000000;
+        border-right: 2px solid #0066cc;
+        box-shadow: 2px 0 10px rgba(0, 102, 204, 0.2);
+    }
+
+    /* Buttons */
+    .stButton > button {
+        background: #0066cc;
+        color: #ffffff;
+        border: 2px solid #0066cc;
+        border-radius: 6px;
+        padding: 0.75rem 1.5rem;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .stButton > button:hover {
+        background: #0080ff;
+        border-color: #0080ff;
+        color: #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 128, 255, 0.4);
+        transform: translateY(-1px);
+    }
+
     /* Text styling */
     h1, h2, h3, h4, h5, h6 {
         color: #ffffff !important;
-        text-shadow: 0 0 5px #00ffff;
-        font-family: 'Orbitron', monospace !important;
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 600 !important;
     }
-    
+
+    /* Form elements */
+    .stSelectbox > div > div {
+        background: #2a2a2a;
+        border: 2px solid #0066cc;
+        color: #ffffff;
+    }
+
+    .stTextInput > div > div > input {
+        background: #2a2a2a;
+        border: 2px solid #0066cc;
+        color: #ffffff;
+    }
+
+    .stNumberInput > div > div > input {
+        background: #2a2a2a;
+        border: 2px solid #0066cc;
+        color: #ffffff;
+    }
+
+    /* Tabs */
+    .stTabs [data-baseweb="tab-list"] {
+        background: #1a1a1a;
+        border-radius: 6px;
+        border: 2px solid #0066cc;
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        background: #2a2a2a;
+        color: #ffffff;
+        border-radius: 4px;
+        margin: 2px;
+    }
+
+    .stTabs [aria-selected="true"] {
+        background: #0066cc !important;
+        color: #ffffff !important;
+    }
+
     /* Success/Error messages */
     .stSuccess {
         background: #1a1a1a;
-        border: 2px solid #00ff00;
-        color: #00ff00;
-        box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-        text-shadow: 0 0 5px #00ff00;
+        border: 2px solid #44ff44;
+        color: #ffffff;
+        border-radius: 6px;
     }
-    
+
     .stError {
         background: #1a1a1a;
-        border: 2px solid #ff0040;
-        color: #ff0040;
-        box-shadow: 0 0 15px rgba(255, 0, 64, 0.3);
-        text-shadow: 0 0 5px #ff0040;
+        border: 2px solid #ff4444;
+        color: #ffffff;
+        border-radius: 6px;
     }
-    
+
     .stWarning {
         background: #1a1a1a;
-        border: 2px solid #ffff00;
-        color: #ffff00;
-        box-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
-        text-shadow: 0 0 5px #ffff00;
+        border: 2px solid #ffaa00;
+        color: #ffffff;
+        border-radius: 6px;
     }
-    
+
     .stInfo {
         background: #1a1a1a;
-        border: 2px solid #00ffff;
-        color: #00ffff;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-        text-shadow: 0 0 5px #00ffff;
+        border: 2px solid #0066cc;
+        color: #ffffff;
+        border-radius: 6px;
+    }
+
+    /* Data tables */
+    .stDataFrame {
+        background: #ffffff;
+        color: #000000;
+        border-radius: 6px;
+        border: 2px solid #0066cc;
+    }
+
+    /* File uploader */
+    .stFileUploader {
+        background: #2a2a2a;
+        border: 2px dashed #0066cc;
+        border-radius: 6px;
+        color: #ffffff;
+    }
+
+    /* Metrics */
+    [data-testid="metric-container"] {
+        background: #2a2a2a;
+        border: 2px solid #0066cc;
+        border-radius: 6px;
+        padding: 1rem;
+        box-shadow: 0 2px 10px rgba(0, 102, 204, 0.2);
+    }
+
+    [data-testid="metric-container"] > div {
+        color: #ffffff;
+    }
+
+    /* Expander */
+    .streamlit-expanderHeader {
+        background: #2a2a2a;
+        border: 2px solid #0066cc;
+        color: #ffffff;
+        border-radius: 6px;
+    }
+
+    .streamlit-expanderContent {
+        background: #1a1a1a;
+        border: 2px solid #0066cc;
+        border-top: none;
+        color: #ffffff;
+        border-radius: 0 0 6px 6px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -299,14 +361,14 @@ def main():
     # Header
     st.markdown("""
     <div class="main-header">
-        🎮 CYBERPUNK CHURN PREDICTION
+        🤖 CHURN PREDICTION DASHBOARD
     </div>
     """, unsafe_allow_html=True)
-    
+
     st.markdown("""
-    <div style="text-align: center; margin-bottom: 3rem; color: #e6e6e6; font-size: 1.2rem;">
-        Advanced Machine Learning Dashboard with Cyberpunk Aesthetics<br>
-        <small style="color: #ff00ff;">Powered by AI • Real-time Predictions • Neon Interface</small>
+    <div style="text-align: center; margin-bottom: 3rem; color: #cccccc; font-size: 1.2rem;">
+        Advanced Machine Learning Platform with High Contrast Interface<br>
+        <small style="color: #0066cc;">Powered by AI • Real-time Predictions • Professional Analytics</small>
     </div>
     """, unsafe_allow_html=True)
     
@@ -315,21 +377,22 @@ def main():
         st.markdown("""
         <div style="text-align: center; padding: 1rem 0;">
             <h2 style="color: white; margin-bottom: 0;">🧭 NAVIGATION</h2>
-            <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Explore the Cyberpunk Dashboard</p>
+            <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Explore the ML Dashboard</p>
         </div>
         """, unsafe_allow_html=True)
         
         page = st.selectbox(
             "Choose Module:",
             ["🏠 Dashboard", "📊 Data Upload", "🤖 ML Training", "🎯 Prediction", "📈 Data Explorer"],
-            help="Navigate between different sections"
+            help="Navigate between different sections",
+            key="main_navigation"
         )
         
         st.markdown("---")
         st.markdown("### 📊 System Status")
-        st.success("✅ Cyberpunk Theme Active")
+        st.success("✅ High Contrast Theme Active")
         st.success("✅ Dashboard Online")
-        st.info("🎮 Gaming Mode Enabled")
+        st.info("🤖 ML Platform Ready")
     
     # Main content based on page selection
     if page == "🏠 Dashboard":
@@ -428,7 +491,8 @@ def show_data_upload():
             target_column = st.selectbox(
                 "Select the target column for prediction:",
                 options=df.columns.tolist(),
-                help="Choose the column that contains the outcome you want to predict"
+                help="Choose the column that contains the outcome you want to predict",
+                key="target_column_selector"
             )
 
             if target_column:
@@ -514,8 +578,8 @@ def show_ml_training():
             'description': 'Linear model for binary classification with probabilistic output',
             'use_case': 'Good for linearly separable data and when interpretability is important',
             'params': {
-                'C': st.slider('Regularization strength (C)', 0.01, 10.0, 1.0, 0.01),
-                'max_iter': st.slider('Maximum iterations', 100, 1000, 100, 50)
+                'C': st.slider('Regularization strength (C)', 0.01, 10.0, 1.0, 0.01, key="lr_c"),
+                'max_iter': st.slider('Maximum iterations', 100, 1000, 100, 50, key="lr_max_iter")
             }
         },
         'Random Forest': {
@@ -523,8 +587,8 @@ def show_ml_training():
             'description': 'Ensemble method using multiple decision trees',
             'use_case': 'Excellent for mixed data types and provides feature importance',
             'params': {
-                'n_estimators': st.slider('Number of trees', 10, 200, 100, 10),
-                'max_depth': st.slider('Maximum depth', 3, 20, 10, 1),
+                'n_estimators': st.slider('Number of trees', 10, 200, 100, 10, key="rf_n_estimators"),
+                'max_depth': st.slider('Maximum depth', 3, 20, 10, 1, key="rf_max_depth"),
                 'random_state': 42
             }
         },
@@ -533,9 +597,9 @@ def show_ml_training():
             'description': 'Sequential ensemble method that builds models iteratively',
             'use_case': 'High performance for complex patterns, good for competitions',
             'params': {
-                'n_estimators': st.slider('Number of boosting stages', 50, 300, 100, 25),
-                'learning_rate': st.slider('Learning rate', 0.01, 0.3, 0.1, 0.01),
-                'max_depth': st.slider('Maximum depth', 3, 10, 6, 1),
+                'n_estimators': st.slider('Number of boosting stages', 50, 300, 100, 25, key="gb_n_estimators"),
+                'learning_rate': st.slider('Learning rate', 0.01, 0.3, 0.1, 0.01, key="gb_learning_rate"),
+                'max_depth': st.slider('Maximum depth', 3, 10, 6, 1, key="gb_max_depth"),
                 'random_state': 42
             }
         },
@@ -544,8 +608,8 @@ def show_ml_training():
             'description': 'Finds optimal boundary between classes using support vectors',
             'use_case': 'Effective for high-dimensional data and non-linear patterns',
             'params': {
-                'C': st.slider('Regularization parameter', 0.1, 10.0, 1.0, 0.1),
-                'kernel': st.selectbox('Kernel', ['rbf', 'linear', 'poly'], index=0),
+                'C': st.slider('Regularization parameter', 0.1, 10.0, 1.0, 0.1, key="svm_c"),
+                'kernel': st.selectbox('Kernel', ['rbf', 'linear', 'poly'], index=0, key="svm_kernel"),
                 'probability': True,
                 'random_state': 42
             }
@@ -555,7 +619,8 @@ def show_ml_training():
     selected_algorithm = st.selectbox(
         "Choose Machine Learning Algorithm:",
         list(algorithms.keys()),
-        help="Select the algorithm you want to use for training"
+        help="Select the algorithm you want to use for training",
+        key="algorithm_selector"
     )
 
     # Show algorithm information
@@ -579,14 +644,16 @@ def show_ml_training():
         handle_missing = st.selectbox(
             "Handle missing values:",
             ["Drop rows", "Fill with mean", "Fill with median", "Fill with mode"],
-            help="Choose how to handle missing values in the dataset"
+            help="Choose how to handle missing values in the dataset",
+            key="missing_values_handler"
         )
 
     with col2:
         scale_features = st.checkbox(
             "Scale numerical features",
             value=True,
-            help="Standardize numerical features (recommended for SVM and Logistic Regression)"
+            help="Standardize numerical features (recommended for SVM and Logistic Regression)",
+            key="scale_features_checkbox"
         )
 
     # Train model button
@@ -736,7 +803,7 @@ def show_ml_training():
 def show_dashboard():
     """Show the main dashboard."""
     
-    st.markdown("### 📊 Cyberpunk Dashboard Overview")
+    st.markdown("### 📊 Dashboard Overview")
     
     # Generate sample data
     df = generate_sample_data()
@@ -855,30 +922,30 @@ def show_prediction():
         col1, col2, col3 = st.columns(3)
         
         with col1:
-            gender = st.selectbox("Gender", ["Female", "Male"])
-            senior_citizen = st.selectbox("Senior Citizen", ["No", "Yes"])
-            partner = st.selectbox("Partner", ["Yes", "No"])
-        
+            gender = st.selectbox("Gender", ["Female", "Male"], key="pred_gender")
+            senior_citizen = st.selectbox("Senior Citizen", ["No", "Yes"], key="pred_senior")
+            partner = st.selectbox("Partner", ["Yes", "No"], key="pred_partner")
+
         with col2:
-            dependents = st.selectbox("Dependents", ["No", "Yes"])
-            tenure = st.slider("Tenure (months)", 0, 72, 32)
-            phone_service = st.selectbox("Phone Service", ["Yes", "No"])
-        
+            dependents = st.selectbox("Dependents", ["No", "Yes"], key="pred_dependents")
+            tenure = st.slider("Tenure (months)", 0, 72, 32, key="pred_tenure")
+            phone_service = st.selectbox("Phone Service", ["Yes", "No"], key="pred_phone")
+
         with col3:
-            internet_service = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"])
-            contract = st.selectbox("Contract", ["Month-to-month", "One year", "Two year"])
-            paperless_billing = st.selectbox("Paperless Billing", ["Yes", "No"])
-        
+            internet_service = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"], key="pred_internet")
+            contract = st.selectbox("Contract", ["Month-to-month", "One year", "Two year"], key="pred_contract")
+            paperless_billing = st.selectbox("Paperless Billing", ["Yes", "No"], key="pred_billing")
+
         col1, col2 = st.columns(2)
-        
+
         with col1:
             payment_method = st.selectbox("Payment Method", [
-                "Electronic check", "Mailed check", 
+                "Electronic check", "Mailed check",
                 "Bank transfer (automatic)", "Credit card (automatic)"
-            ])
+            ], key="pred_payment")
         
         with col2:
-            monthly_charges = st.number_input("Monthly Charges", 0.0, 200.0, 64.76)
+            monthly_charges = st.number_input("Monthly Charges", 0.0, 200.0, 64.76, key="pred_monthly_charges")
         
         submitted = st.form_submit_button("🚀 PREDICT CHURN")
         
