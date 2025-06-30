@@ -1070,8 +1070,3 @@ def show_data_explorer():
 
 if __name__ == "__main__":
     main()
-
-
-
-if __name__ == "__main__":
-    main()
