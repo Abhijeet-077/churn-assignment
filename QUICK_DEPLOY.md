@@ -49,32 +49,15 @@
    git push heroku main
    ```
 
-**⏱️ Deployment time:** 5-7 minutes  
-**💰 Cost:** FREE tier available  
-
----
-
-## 🐳 **Local Docker Deployment**
-
-If you have Docker installed:
-
-```bash
-# Clone the repository
-git clone https://github.com/Abhijeet-077/churn-assignment.git
-cd churn-assignment
-
-# Build and run with Docker Compose
-docker-compose up -d
-
-# Access at: http://localhost:8501
-```
+**⏱️ Deployment time:** 5-7 minutes
+**💰 Cost:** FREE tier available
 
 ---
 
 ## 📁 **What's Included in the Repository**
 
 ✅ **Complete Cyberpunk Streamlit App** (`streamlit_app_simple.py`)  
-✅ **Docker Configuration** (`Dockerfile`, `docker-compose.yml`)  
+
 ✅ **Streamlit Cloud Config** (`.streamlit/config.toml`)  
 ✅ **Heroku Config** (`Procfile`, `runtime.txt`, `setup.sh`)  
 ✅ **Railway Config** (`railway.json`)  

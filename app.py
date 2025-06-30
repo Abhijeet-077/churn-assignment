@@ -12,6 +12,13 @@ from plotly.subplots import make_subplots
 import time
 from datetime import datetime
 import random
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+import io
 
 # Page configuration
 st.set_page_config(
@@ -314,7 +321,7 @@ def main():
         
         page = st.selectbox(
             "Choose Module:",
-            ["🏠 Dashboard", "🎯 Prediction", "📊 Data Explorer", "🎮 Theme Demo"],
+            ["🏠 Dashboard", "📊 Data Upload", "🤖 ML Training", "🎯 Prediction", "📈 Data Explorer"],
             help="Navigate between different sections"
         )
         
@@ -327,12 +334,404 @@ def main():
     # Main content based on page selection
     if page == "🏠 Dashboard":
         show_dashboard()
+    elif page == "📊 Data Upload":
+        show_data_upload()
+    elif page == "🤖 ML Training":
+        show_ml_training()
     elif page == "🎯 Prediction":
         show_prediction()
-    elif page == "📊 Data Explorer":
+    elif page == "📈 Data Explorer":
         show_data_explorer()
-    elif page == "🎮 Theme Demo":
-        show_theme_demo()
+
+def validate_dataset(df):
+    """Validate uploaded dataset."""
+    issues = []
+
+    if df.empty:
+        issues.append("Dataset is empty")
+        return issues
+
+    if len(df.columns) < 2:
+        issues.append("Dataset must have at least 2 columns")
+
+    if df.isnull().sum().sum() > len(df) * 0.5:
+        issues.append("Dataset has too many missing values (>50%)")
+
+    return issues
+
+def show_data_upload():
+    """Show data upload interface."""
+
+    st.markdown("### 📊 Dataset Upload & Validation")
+
+    st.info("📁 Upload your customer dataset (CSV format) for churn prediction analysis")
+
+    # File upload
+    uploaded_file = st.file_uploader(
+        "Choose a CSV file",
+        type="csv",
+        help="Upload a CSV file containing customer data with features and target variable"
+    )
+
+    if uploaded_file is not None:
+        try:
+            # Read the uploaded file
+            df = pd.read_csv(uploaded_file)
+
+            # Store in session state
+            st.session_state['uploaded_data'] = df
+
+            st.success(f"✅ Dataset uploaded successfully! Shape: {df.shape}")
+
+            # Data validation
+            st.markdown("#### 🔍 Data Validation")
+            issues = validate_dataset(df)
+
+            if issues:
+                for issue in issues:
+                    st.warning(f"⚠️ {issue}")
+            else:
+                st.success("✅ Dataset validation passed!")
+
+            # Basic statistics
+            col1, col2, col3, col4 = st.columns(4)
+
+            with col1:
+                st.metric("Rows", f"{len(df):,}")
+            with col2:
+                st.metric("Columns", len(df.columns))
+            with col3:
+                st.metric("Missing Values", f"{df.isnull().sum().sum():,}")
+            with col4:
+                st.metric("Numeric Columns", len(df.select_dtypes(include=[np.number]).columns))
+
+            # Data preview
+            st.markdown("#### 👀 Data Preview")
+            st.dataframe(df.head(10), use_container_width=True)
+
+            # Column information
+            st.markdown("#### 📋 Column Information")
+
+            col_info = pd.DataFrame({
+                'Column': df.columns,
+                'Data Type': df.dtypes,
+                'Non-Null Count': df.count(),
+                'Null Count': df.isnull().sum(),
+                'Unique Values': df.nunique()
+            })
+
+            st.dataframe(col_info, use_container_width=True)
+
+            # Target column selection
+            st.markdown("#### 🎯 Target Column Selection")
+
+            target_column = st.selectbox(
+                "Select the target column for prediction:",
+                options=df.columns.tolist(),
+                help="Choose the column that contains the outcome you want to predict"
+            )
+
+            if target_column:
+                st.session_state['target_column'] = target_column
+
+                # Show target distribution
+                if df[target_column].dtype == 'object' or df[target_column].nunique() <= 10:
+                    target_counts = df[target_column].value_counts()
+
+                    fig = px.bar(
+                        x=target_counts.index,
+                        y=target_counts.values,
+                        title=f'📊 Distribution of {target_column}',
+                        labels={'x': target_column, 'y': 'Count'}
+                    )
+
+                    fig.update_layout(
+                        title_font_size=16,
+                        title_x=0.5,
+                        plot_bgcolor='white',
+                        paper_bgcolor='white',
+                        font=dict(size=12)
+                    )
+
+                    st.plotly_chart(fig, use_container_width=True)
+
+                    # Class balance information
+                    st.markdown("##### 📈 Class Distribution")
+                    for value, count in target_counts.items():
+                        percentage = (count / len(df)) * 100
+                        st.write(f"**{value}**: {count:,} samples ({percentage:.1f}%)")
+
+                st.success(f"✅ Target column '{target_column}' selected successfully!")
+                st.info("🚀 You can now proceed to the ML Training section to build your model.")
+
+        except Exception as e:
+            st.error(f"❌ Error reading file: {str(e)}")
+            st.info("💡 Please ensure your file is a valid CSV format")
+
+    else:
+        # Show sample data format
+        st.markdown("#### 📝 Expected Data Format")
+        st.info("Your CSV file should contain customer features and a target column for churn prediction")
+
+        sample_data = pd.DataFrame({
+            'CustomerID': ['C001', 'C002', 'C003'],
+            'Age': [25, 45, 35],
+            'MonthlyCharges': [65.5, 89.2, 45.0],
+            'Tenure': [12, 36, 8],
+            'Contract': ['Month-to-month', 'Two year', 'One year'],
+            'Churn': ['No', 'No', 'Yes']
+        })
+
+        st.markdown("**Sample format:**")
+        st.dataframe(sample_data, use_container_width=True)
+
+def show_ml_training():
+    """Show ML training interface."""
+
+    st.markdown("### 🤖 Machine Learning Model Training")
+
+    # Check if data is uploaded
+    if 'uploaded_data' not in st.session_state:
+        st.warning("⚠️ Please upload a dataset first in the Data Upload section")
+        return
+
+    df = st.session_state['uploaded_data']
+
+    if 'target_column' not in st.session_state:
+        st.warning("⚠️ Please select a target column in the Data Upload section")
+        return
+
+    target_column = st.session_state['target_column']
+
+    st.success(f"✅ Using dataset with {len(df)} rows and target column: '{target_column}'")
+
+    # Algorithm selection
+    st.markdown("#### 🔧 Algorithm Selection")
+
+    algorithms = {
+        'Logistic Regression': {
+            'model': LogisticRegression,
+            'description': 'Linear model for binary classification with probabilistic output',
+            'use_case': 'Good for linearly separable data and when interpretability is important',
+            'params': {
+                'C': st.slider('Regularization strength (C)', 0.01, 10.0, 1.0, 0.01),
+                'max_iter': st.slider('Maximum iterations', 100, 1000, 100, 50)
+            }
+        },
+        'Random Forest': {
+            'model': RandomForestClassifier,
+            'description': 'Ensemble method using multiple decision trees',
+            'use_case': 'Excellent for mixed data types and provides feature importance',
+            'params': {
+                'n_estimators': st.slider('Number of trees', 10, 200, 100, 10),
+                'max_depth': st.slider('Maximum depth', 3, 20, 10, 1),
+                'random_state': 42
+            }
+        },
+        'Gradient Boosting': {
+            'model': GradientBoostingClassifier,
+            'description': 'Sequential ensemble method that builds models iteratively',
+            'use_case': 'High performance for complex patterns, good for competitions',
+            'params': {
+                'n_estimators': st.slider('Number of boosting stages', 50, 300, 100, 25),
+                'learning_rate': st.slider('Learning rate', 0.01, 0.3, 0.1, 0.01),
+                'max_depth': st.slider('Maximum depth', 3, 10, 6, 1),
+                'random_state': 42
+            }
+        },
+        'Support Vector Machine': {
+            'model': SVC,
+            'description': 'Finds optimal boundary between classes using support vectors',
+            'use_case': 'Effective for high-dimensional data and non-linear patterns',
+            'params': {
+                'C': st.slider('Regularization parameter', 0.1, 10.0, 1.0, 0.1),
+                'kernel': st.selectbox('Kernel', ['rbf', 'linear', 'poly'], index=0),
+                'probability': True,
+                'random_state': 42
+            }
+        }
+    }
+
+    selected_algorithm = st.selectbox(
+        "Choose Machine Learning Algorithm:",
+        list(algorithms.keys()),
+        help="Select the algorithm you want to use for training"
+    )
+
+    # Show algorithm information
+    algo_info = algorithms[selected_algorithm]
+
+    with st.expander(f"ℹ️ About {selected_algorithm}", expanded=True):
+        st.write(f"**Description:** {algo_info['description']}")
+        st.write(f"**Use Case:** {algo_info['use_case']}")
+
+    # Hyperparameter configuration
+    st.markdown("#### ⚙️ Hyperparameter Configuration")
+
+    params = algo_info['params'].copy()
+
+    # Data preprocessing options
+    st.markdown("#### 🔄 Data Preprocessing")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        handle_missing = st.selectbox(
+            "Handle missing values:",
+            ["Drop rows", "Fill with mean", "Fill with median", "Fill with mode"],
+            help="Choose how to handle missing values in the dataset"
+        )
+
+    with col2:
+        scale_features = st.checkbox(
+            "Scale numerical features",
+            value=True,
+            help="Standardize numerical features (recommended for SVM and Logistic Regression)"
+        )
+
+    # Train model button
+    if st.button("🚀 Train Model", type="primary"):
+        with st.spinner("🤖 Training model... This may take a few moments."):
+            try:
+                # Prepare data
+                df_processed = df.copy()
+
+                # Handle missing values
+                if handle_missing == "Drop rows":
+                    df_processed = df_processed.dropna()
+                elif handle_missing == "Fill with mean":
+                    numeric_cols = df_processed.select_dtypes(include=[np.number]).columns
+                    df_processed[numeric_cols] = df_processed[numeric_cols].fillna(df_processed[numeric_cols].mean())
+                elif handle_missing == "Fill with median":
+                    numeric_cols = df_processed.select_dtypes(include=[np.number]).columns
+                    df_processed[numeric_cols] = df_processed[numeric_cols].fillna(df_processed[numeric_cols].median())
+                elif handle_missing == "Fill with mode":
+                    for col in df_processed.columns:
+                        df_processed[col] = df_processed[col].fillna(df_processed[col].mode()[0] if not df_processed[col].mode().empty else 0)
+
+                # Prepare features and target
+                X = df_processed.drop(columns=[target_column])
+                y = df_processed[target_column]
+
+                # Encode categorical variables
+                label_encoders = {}
+                for col in X.select_dtypes(include=['object']).columns:
+                    le = LabelEncoder()
+                    X[col] = le.fit_transform(X[col].astype(str))
+                    label_encoders[col] = le
+
+                # Encode target if categorical
+                if y.dtype == 'object':
+                    target_encoder = LabelEncoder()
+                    y = target_encoder.fit_transform(y)
+                    st.session_state['target_encoder'] = target_encoder
+
+                # Scale features if requested
+                if scale_features:
+                    scaler = StandardScaler()
+                    X = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
+                    st.session_state['scaler'] = scaler
+
+                # Split data
+                X_train, X_test, y_train, y_test = train_test_split(
+                    X, y, test_size=0.2, random_state=42, stratify=y
+                )
+
+                # Train model
+                model = algo_info['model'](**params)
+                model.fit(X_train, y_train)
+
+                # Make predictions
+                y_pred = model.predict(X_test)
+                y_pred_proba = model.predict_proba(X_test)[:, 1] if hasattr(model, 'predict_proba') else None
+
+                # Calculate metrics
+                accuracy = accuracy_score(y_test, y_pred)
+                precision = precision_score(y_test, y_pred, average='weighted')
+                recall = recall_score(y_test, y_pred, average='weighted')
+                f1 = f1_score(y_test, y_pred, average='weighted')
+
+                # Store model and results
+                st.session_state['trained_model'] = model
+                st.session_state['label_encoders'] = label_encoders
+                st.session_state['feature_columns'] = X.columns.tolist()
+                st.session_state['model_metrics'] = {
+                    'accuracy': accuracy,
+                    'precision': precision,
+                    'recall': recall,
+                    'f1': f1
+                }
+
+                # Display results
+                st.success("✅ Model trained successfully!")
+
+                # Performance metrics
+                st.markdown("#### 📊 Model Performance")
+
+                col1, col2, col3, col4 = st.columns(4)
+
+                with col1:
+                    st.metric("Accuracy", f"{accuracy:.3f}")
+                with col2:
+                    st.metric("Precision", f"{precision:.3f}")
+                with col3:
+                    st.metric("Recall", f"{recall:.3f}")
+                with col4:
+                    st.metric("F1-Score", f"{f1:.3f}")
+
+                # Confusion matrix
+                cm = confusion_matrix(y_test, y_pred)
+
+                fig = px.imshow(
+                    cm,
+                    text_auto=True,
+                    title="📊 Confusion Matrix",
+                    labels=dict(x="Predicted", y="Actual"),
+                    color_continuous_scale="Blues"
+                )
+
+                fig.update_layout(
+                    title_font_size=16,
+                    title_x=0.5,
+                    plot_bgcolor='white',
+                    paper_bgcolor='white',
+                    font=dict(size=12)
+                )
+
+                st.plotly_chart(fig, use_container_width=True)
+
+                # Feature importance (if available)
+                if hasattr(model, 'feature_importances_'):
+                    st.markdown("#### 📈 Feature Importance")
+
+                    importance_df = pd.DataFrame({
+                        'Feature': X.columns,
+                        'Importance': model.feature_importances_
+                    }).sort_values('Importance', ascending=True)
+
+                    fig = px.bar(
+                        importance_df.tail(10),
+                        x='Importance',
+                        y='Feature',
+                        orientation='h',
+                        title='📊 Top 10 Most Important Features'
+                    )
+
+                    fig.update_layout(
+                        title_font_size=16,
+                        title_x=0.5,
+                        plot_bgcolor='white',
+                        paper_bgcolor='white',
+                        font=dict(size=12)
+                    )
+
+                    st.plotly_chart(fig, use_container_width=True)
+
+                st.info("🎯 You can now use the trained model in the Prediction section!")
+
+            except Exception as e:
+                st.error(f"❌ Error training model: {str(e)}")
+                st.info("💡 Please check your data format and try again")
 
 def show_dashboard():
     """Show the main dashboard."""
@@ -384,39 +783,62 @@ def show_dashboard():
         """, unsafe_allow_html=True)
     
     # Charts
-    st.markdown("### 📈 Cyberpunk Data Visualization")
-    
+    st.markdown("### 📈 Data Visualization")
+    st.info("📊 Charts use clean, professional styling for optimal data readability")
+
     col1, col2 = st.columns(2)
     
     with col1:
         # Churn distribution
         churn_counts = df['Churn'].value_counts()
         fig = px.pie(values=churn_counts.values, names=churn_counts.index,
-                     title='🎮 Churn Distribution',
-                     color_discrete_sequence=['#00ffff', '#ff00ff'])
-        
+                     title='📊 Customer Churn Distribution')
+
+        # Clean, professional chart styling
         fig.update_layout(
-            plot_bgcolor='#1a1a1a',
-            paper_bgcolor='#1a1a1a',
-            font_color='#ffffff',
-            title_font_color='#00ffff'
+            title_font_size=16,
+            title_x=0.5,
+            showlegend=True,
+            font=dict(size=12),
+            plot_bgcolor='white',
+            paper_bgcolor='white'
         )
-        
+
+        # Add percentage labels
+        fig.update_traces(
+            textposition='inside',
+            textinfo='percent+label',
+            hovertemplate='<b>%{label}</b><br>Count: %{value}<br>Percentage: %{percent}<extra></extra>'
+        )
+
         st.plotly_chart(fig, use_container_width=True)
     
     with col2:
         # Monthly charges distribution
         fig = px.histogram(df, x='MonthlyCharges', color='Churn',
-                          title='🎮 Monthly Charges by Churn',
-                          color_discrete_sequence=['#00ffff', '#ff00ff'])
-        
+                          title='📈 Monthly Charges Distribution by Churn Status',
+                          nbins=30,
+                          barmode='overlay',
+                          opacity=0.7)
+
+        # Clean, professional chart styling
         fig.update_layout(
-            plot_bgcolor='#1a1a1a',
-            paper_bgcolor='#1a1a1a',
-            font_color='#ffffff',
-            title_font_color='#00ffff'
+            title_font_size=16,
+            title_x=0.5,
+            xaxis_title="Monthly Charges ($)",
+            yaxis_title="Number of Customers",
+            showlegend=True,
+            font=dict(size=12),
+            bargap=0.1,
+            plot_bgcolor='white',
+            paper_bgcolor='white'
         )
-        
+
+        # Improve hover information
+        fig.update_traces(
+            hovertemplate='<b>%{fullData.name}</b><br>Monthly Charges: $%{x}<br>Count: %{y}<extra></extra>'
+        )
+
         st.plotly_chart(fig, use_container_width=True)
 
 def show_prediction():
@@ -522,95 +944,67 @@ def show_data_explorer():
     st.dataframe(df.head(100), use_container_width=True)
     
     st.markdown("#### 📈 Data Analysis")
-    
+    st.info("📊 Professional chart styling for clear data insights")
+
     col1, col2 = st.columns(2)
     
     with col1:
         # Contract type analysis
         contract_churn = df.groupby(['Contract', 'Churn']).size().unstack()
-        fig = px.bar(contract_churn, title='🎮 Churn by Contract Type',
-                     color_discrete_sequence=['#00ffff', '#ff00ff'])
-        
+        fig = px.bar(contract_churn, title='📊 Customer Churn by Contract Type',
+                     barmode='group')
+
+        # Clean, professional chart styling
         fig.update_layout(
-            plot_bgcolor='#1a1a1a',
-            paper_bgcolor='#1a1a1a',
-            font_color='#ffffff',
-            title_font_color='#00ffff'
+            title_font_size=16,
+            title_x=0.5,
+            xaxis_title="Contract Type",
+            yaxis_title="Number of Customers",
+            showlegend=True,
+            font=dict(size=12),
+            bargap=0.2,
+            bargroupgap=0.1,
+            plot_bgcolor='white',
+            paper_bgcolor='white'
         )
-        
+
+        # Improve hover information
+        fig.update_traces(
+            hovertemplate='<b>%{fullData.name}</b><br>Contract: %{x}<br>Count: %{y}<extra></extra>'
+        )
+
         st.plotly_chart(fig, use_container_width=True)
     
     with col2:
         # Tenure vs Monthly Charges
         fig = px.scatter(df, x='Tenure', y='MonthlyCharges', color='Churn',
-                        title='🎮 Tenure vs Monthly Charges',
-                        color_discrete_sequence=['#00ffff', '#ff00ff'])
-        
+                        title='📈 Customer Tenure vs Monthly Charges',
+                        opacity=0.7,
+                        size_max=10)
+
+        # Clean, professional chart styling
         fig.update_layout(
-            plot_bgcolor='#1a1a1a',
-            paper_bgcolor='#1a1a1a',
-            font_color='#ffffff',
-            title_font_color='#00ffff'
+            title_font_size=16,
+            title_x=0.5,
+            xaxis_title="Tenure (Months)",
+            yaxis_title="Monthly Charges ($)",
+            showlegend=True,
+            font=dict(size=12),
+            plot_bgcolor='white',
+            paper_bgcolor='white'
         )
-        
+
+        # Improve hover information
+        fig.update_traces(
+            hovertemplate='<b>%{fullData.name}</b><br>Tenure: %{x} months<br>Monthly Charges: $%{y}<extra></extra>'
+        )
+
         st.plotly_chart(fig, use_container_width=True)
 
-def show_theme_demo():
-    """Show theme demonstration."""
-    
-    st.markdown("### 🎮 Cyberpunk Theme Demonstration")
-    
-    st.success("✅ Success message with neon green glow")
-    st.error("❌ Error message with neon red glow")
-    st.warning("⚠️ Warning message with neon yellow glow")
-    st.info("ℹ️ Info message with neon cyan glow")
-    
-    st.markdown("#### 🎨 Color Palette")
-    
-    colors = [
-        ("Neon Cyan", "#00ffff", "Primary accent color"),
-        ("Neon Purple", "#ff00ff", "Secondary highlights"),
-        ("Electric Green", "#00ff00", "Success states"),
-        ("Hot Pink", "#ff0040", "Error states"),
-        ("Electric Yellow", "#ffff00", "Warning states")
-    ]
-    
-    for name, hex_code, description in colors:
-        st.markdown(f"""
-        <div style="background: {hex_code}; color: #000; padding: 1rem; margin: 0.5rem 0; border-radius: 8px; font-weight: bold;">
-            {name} ({hex_code}) - {description}
-        </div>
-        """, unsafe_allow_html=True)
-    
-    st.markdown("#### 🎬 Interactive Elements")
-    
-    if st.button("🚀 Cyberpunk Button"):
-        st.balloons()
-        st.success("🎮 Cyberpunk button activated!")
-    
-    st.markdown("#### 📊 Sample Chart")
-    
-    # Sample data for chart
-    sample_data = pd.DataFrame({
-        'Month': pd.date_range('2024-01-01', periods=12, freq='M'),
-        'Churn_Rate': np.random.uniform(20, 35, 12),
-        'Revenue': np.random.uniform(50000, 80000, 12)
-    })
-    
-    fig = px.line(sample_data, x='Month', y='Churn_Rate',
-                  title='🎮 Monthly Churn Rate Trend',
-                  color_discrete_sequence=['#00ffff'])
-    
-    fig.update_layout(
-        plot_bgcolor='#1a1a1a',
-        paper_bgcolor='#1a1a1a',
-        font_color='#ffffff',
-        title_font_color='#00ffff'
-    )
-    
-    fig.update_traces(line=dict(width=3, color='#00ffff'))
-    
-    st.plotly_chart(fig, use_container_width=True)
+if __name__ == "__main__":
+    main()
+
+
 
 if __name__ == "__main__":
     main()

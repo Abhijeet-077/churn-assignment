@@ -44,32 +44,7 @@ This guide covers multiple deployment options for the Cyberpunk Churn Prediction
 
 ---
 
-## 🐳 **Option 2: Docker Deployment**
 
-### Local Docker:
-```bash
-# Build the image
-docker build -t cyberpunk-churn-prediction .
-
-# Run the container
-docker run -d -p 8501:8501 --name cyberpunk-churn cyberpunk-churn-prediction
-```
-
-### Docker Compose:
-```bash
-# Start the application
-docker-compose up -d
-
-# Stop the application
-docker-compose down
-```
-
-### ✅ **Pros:**
-- Consistent environment
-- Easy scaling
-- Production-ready
-
----
 
 ## 🚂 **Option 3: Railway**
 
@@ -176,10 +151,7 @@ churn-assignment/
 git add . && git commit -m "Deploy app" && git push origin main
 ```
 
-### Docker:
-```bash
-docker-compose up -d
-```
+
 
 ### Railway:
 ```bash
