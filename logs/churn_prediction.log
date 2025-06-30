@@ -1458,3 +1458,21 @@ Feature names seen at fit time, yet now missing:
 2025-06-29 23:29:59,919 - src.api.prediction_service - [32mINFO[0m - All models trained successfully
 2025-06-29 23:29:59,921 - src.api.prediction_service - [32mINFO[0m - Loading model metadata...
 2025-06-29 23:29:59,923 - src.api.prediction_service - [32mINFO[0m - Loaded feature importance data
+2025-06-29 23:44:04,982 - src.data.preprocessing - [32mINFO[0m - Transforming new data using fitted transformers
+2025-06-29 23:44:04,983 - src.api.prediction_service - [31mERROR[0m - Preprocessing failed: No fitted transformers found. Call fit_transform first.
+2025-06-29 23:44:04,998 - src.api.prediction_service - [31mERROR[0m - Prediction failed: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- deviceprotection
+- gender
+- multiplelines
+- onlinebackup
+- onlinesecurity
+- ...
+Feature names seen at fit time, yet now missing:
+- deviceprotection_no internet service
+- monthlycharges_binned
+- onlinebackup_no internet service
+- onlinesecurity_no internet service
+- onlinesecurity_yes
+- ...
+
