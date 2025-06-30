@@ -29,7 +29,7 @@ This guide covers multiple deployment options for the Cyberpunk Churn Prediction
    - Visit [share.streamlit.io](https://share.streamlit.io/)
    - Connect your GitHub account
    - Select your repository: `churn-assignment`
-   - Set main file: `streamlit_app_simple.py`
+   - Set main file: `app.py`
    - Click "Deploy"
 
 3. **Configuration:**

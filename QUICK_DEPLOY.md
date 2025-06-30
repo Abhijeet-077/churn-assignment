@@ -14,7 +14,7 @@
 2. **Sign in** with your GitHub account
 3. **Click "New app"**
 4. **Select repository:** `Abhijeet-077/churn-assignment`
-5. **Main file path:** `streamlit_app_simple.py`
+5. **Main file path:** `app.py`
 6. **Click "Deploy!"**
 
 **⏱️ Deployment time:** 2-3 minutes  

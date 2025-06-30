@@ -1,167 +1,169 @@
-# Customer Churn Prediction - Advanced ML Solution
+# 🎮 Cyberpunk Churn Prediction Dashboard
 
-A comprehensive, production-ready machine learning solution for customer churn prediction featuring advanced ML techniques, interactive dashboards, and production APIs.
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-red)](https://streamlit.io)
+[![Plotly](https://img.shields.io/badge/Plotly-5.0%2B-green)](https://plotly.com)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 🚀 Features
+A stunning cyberpunk-themed Streamlit dashboard for customer churn prediction with neon aesthetics and interactive visualizations.
 
-### Advanced Machine Learning
-- **Multiple Models**: Logistic Regression, XGBoost, LightGBM, CatBoost, Random Forest
-- **Ensemble Methods**: Stacking and blending techniques
-- **Bayesian Optimization**: Using Optuna for hyperparameter tuning
-- **Advanced Preprocessing**: Multiple imputation, outlier detection, feature scaling
-- **Feature Engineering**: Automated feature creation and selection
-- **Model Interpretability**: SHAP analysis and feature importance
+## ✨ Features
 
-### Production-Ready Components
-- **FastAPI REST API**: Complete with validation, versioning, and documentation
-- **Interactive Dashboard**: Multi-page Streamlit application
-- **MLOps Integration**: Model monitoring, drift detection, automated retraining
-- **Comprehensive Testing**: Unit tests with pytest
-- **Documentation**: Auto-generated with Sphinx
+- 🌑 **Dark Cyberpunk Theme** - Neon colors with dark backgrounds
+- ⚡ **Interactive Dashboard** - Multiple pages with smooth navigation
+- 📊 **Data Visualizations** - Cyberpunk-styled charts and graphs
+- 🎯 **Churn Prediction** - AI-powered customer churn simulation
+- 📱 **Responsive Design** - Works on desktop, tablet, and mobile
+- 🎨 **Neon Aesthetics** - Cyan, purple, green, and pink accents
+- 🔤 **Cyberpunk Fonts** - Orbitron and Rajdhani typography
 
-### Data Analysis & Visualization
-- **Automated EDA**: Using pandas-profiling and sweetviz
-- **Advanced Visualizations**: Interactive plots with Plotly
-- **Statistical Analysis**: Comprehensive model evaluation metrics
-- **Business Insights**: Actionable recommendations
+## 🚀 Quick Start
+
+### Option 1: Streamlit Cloud (Recommended)
+
+1. Visit [share.streamlit.io](https://share.streamlit.io/)
+2. Connect your GitHub account
+3. Select this repository
+4. Set main file: `app.py`
+5. Click "Deploy!"
+
+### Option 2: Local Development
+
+```bash
+# Clone the repository
+git clone https://github.com/Abhijeet-077/churn-assignment.git
+cd churn-assignment
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the app
+streamlit run app.py
+```
+
+### Option 3: Docker
+
+```bash
+# Build and run with Docker
+docker build -t cyberpunk-churn .
+docker run -p 8501:8501 cyberpunk-churn
+```
+
+## 📱 Dashboard Pages
+
+### 🏠 Dashboard
+- Overview metrics with neon cards
+- Customer statistics
+- Interactive charts
+
+### 🎯 Prediction
+- Customer data input form
+- Real-time churn prediction
+- Risk level assessment
+
+### 📊 Data Explorer
+- Sample customer data
+- Interactive visualizations
+- Data analysis tools
+
+### 🎮 Theme Demo
+- Color palette showcase
+- Interactive elements
+- Cyberpunk styling examples
+
+## 🎨 Cyberpunk Theme
+
+The dashboard features a complete cyberpunk aesthetic:
+
+- **Colors**: Neon cyan (#00ffff), purple (#ff00ff), green (#00ff00), pink (#ff0040)
+- **Backgrounds**: Dark themes (#0d1117, #1a1a1a, #2d2d2d)
+- **Typography**: Orbitron (headers) and Rajdhani (body)
+- **Effects**: Glowing text, neon borders, smooth animations
+
+## 🛠️ Technology Stack
+
+- **Frontend**: Streamlit
+- **Visualization**: Plotly
+- **Data Processing**: Pandas, NumPy
+- **Styling**: Custom CSS with cyberpunk theme
+- **Deployment**: Docker, Streamlit Cloud, Heroku, Railway
+
+## 📦 Dependencies
+
+```
+streamlit>=1.28.0
+pandas>=1.5.0
+numpy>=1.21.0
+plotly>=5.0.0
+```
+
+## 🚀 Deployment Options
+
+### Streamlit Cloud
+- **Free hosting**
+- **Automatic deployments**
+- **Built-in SSL**
+
+### Railway
+- **Easy deployment**
+- **Automatic scaling**
+- **Built-in monitoring**
+
+### Heroku
+- **Simple deployment**
+- **Add-ons available**
+- **Good documentation**
+
+### Docker
+- **Consistent environment**
+- **Easy scaling**
+- **Production-ready**
 
 ## 📁 Project Structure
 
 ```
-churn-prediction/
-├── src/
-│   ├── data/           # Data processing modules
-│   ├── features/       # Feature engineering
-│   ├── models/         # ML models and training
-│   ├── api/           # FastAPI application
-│   ├── dashboard/     # Streamlit dashboard
-│   └── utils/         # Utilities and helpers
-├── data/
-│   ├── raw/           # Raw data files
-│   ├── processed/     # Processed data
-│   └── external/      # External data sources
-├── notebooks/         # Jupyter notebooks for exploration
-├── tests/            # Unit tests
-├── docs/             # Documentation
-├── config/           # Configuration files
-├── deployment/       # Deployment scripts
-└── logs/            # Application logs
+churn-assignment/
+├── app.py                    # Main Streamlit application
+├── requirements.txt          # Python dependencies
+├── Dockerfile               # Docker configuration
+├── Procfile                 # Heroku configuration
+├── railway.json             # Railway configuration
+├── .streamlit/
+│   └── config.toml          # Streamlit configuration
+└── README.md                # This file
 ```
 
-## 🛠️ Installation
+## 🎯 Features Showcase
 
-### Prerequisites
-- Python 3.8 or higher
-- pip or conda package manager
+### Interactive Prediction
+- Customer data input forms
+- Real-time churn probability calculation
+- Risk level visualization
+- Confidence metrics
 
-### Setup Environment
+### Data Visualization
+- Churn distribution charts
+- Customer segmentation analysis
+- Interactive scatter plots
+- Cyberpunk-styled graphs
 
-1. **Clone the repository**
-```bash
-git clone <repository-url>
-cd churn-prediction
-```
-
-2. **Create virtual environment**
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-4. **Install the package in development mode**
-```bash
-pip install -e .
-```
-
-## 🚀 Quick Start
-
-### 1. Data Preparation
-```bash
-python -m src.data.data_loader
-```
-
-### 2. Train Models
-```bash
-python -m src.models.train
-```
-
-### 3. Start API Server
-```bash
-python -m src.api.main
-```
-
-### 4. Launch Dashboard
-```bash
-python -m src.dashboard.main
-```
-
-## 📊 Usage Examples
-
-### API Usage
-```python
-import requests
-
-# Predict churn for a customer
-data = {
-    "tenure": 12,
-    "MonthlyCharges": 65.5,
-    "TotalCharges": 786.0,
-    "Contract": "Month-to-month",
-    "PaymentMethod": "Electronic check"
-}
-
-response = requests.post("http://localhost:8000/predict", json=data)
-prediction = response.json()
-```
-
-### Dashboard Features
-- **Data Exploration**: Interactive visualizations and statistics
-- **Model Comparison**: Performance metrics across all models
-- **Prediction Interface**: Real-time churn prediction
-- **SHAP Analysis**: Model interpretability and feature importance
-
-## 🧪 Testing
-
-Run the test suite:
-```bash
-pytest tests/ -v --cov=src
-```
-
-## 📈 Model Performance
-
-The solution achieves:
-- **ROC-AUC**: > 0.85 on test set
-- **Precision**: > 0.80 for churn prediction
-- **Recall**: > 0.75 for churn identification
-- **F1-Score**: > 0.77 overall performance
+### Responsive Design
+- Mobile-friendly interface
+- Tablet optimization
+- Desktop experience
+- Touch-friendly controls
 
 ## 🔧 Configuration
 
-All configuration is managed through `config/config.yaml`:
-- Model parameters and hyperparameter ranges
-- Data processing settings
-- API and dashboard configurations
-- Logging and monitoring settings
+The app uses Streamlit's configuration system:
 
-## 📚 Documentation
-
-Generate documentation:
-```bash
-cd docs
-make html
-```
-
-## 🐳 Docker Deployment
-
-Build and run with Docker:
-```bash
-docker build -t churn-prediction .
-docker run -p 8000:8000 -p 8501:8501 churn-prediction
+```toml
+[theme]
+base = "dark"
+primaryColor = "#00ffff"
+backgroundColor = "#0d1117"
+secondaryBackgroundColor = "#1a1a1a"
+textColor = "#ffffff"
 ```
 
 ## 🤝 Contributing
@@ -169,16 +171,24 @@ docker run -p 8000:8000 -p 8501:8501 churn-prediction
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Add tests for new functionality
-5. Run the test suite
-6. Submit a pull request
+4. Test the application
+5. Submit a pull request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## 🎮 Live Demo
 
-- Telco Customer Churn dataset from IBM
-- Open source ML libraries and frameworks
-- Community contributions and feedback
+Visit the live demo: [Cyberpunk Churn Prediction](https://your-app-name.streamlit.app)
+
+## 📞 Support
+
+For questions or issues:
+- Open an issue on GitHub
+- Check the deployment documentation
+- Review the troubleshooting guide
+
+---
+
+**🎮 Built with cyberpunk aesthetics for the future of data science dashboards!**
